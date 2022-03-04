@@ -52,25 +52,40 @@ const Input = props => {
       </form> : `Winner with ${cities.length} guesses!`}
       
       <section className="cities">
+        <table>
+          <thead>
+            <tr>
+              <th>Distance from Target</th>
+              <th>Guessed City</th>
+            </tr>
+          </thead>
+        <tbody>
         {cities.map((city, i) => {
           curCity = cityResults[city]
           return(
-          <div key={i} className="citywrap">
-              <p className="cityInfo">{curCity ? 
-                getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude) : null}</p>
+          <tr key={i}>
+          {/* <div className="citywrap"> */}
+              <td className="cityInfo">{curCity ? 
+                getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude) : null}</td>
+            <td className='cityName'>
             {city.toUpperCase().split('').map(
             (char, i) => {
               if (char === " ") {
                 return (
-                  <div key={`c${i}`} className="blank">{char}</div>
+                  <p key={`c${i}`} className="blank">{char}</p>
                 )
               }
               return (
-                <div key={`c${i}`} className="char">{char}</div>
+                <p key={`c${i}`} className="char">{char}</p>
               )
             }
-          )}</div>
+          )}
+              </td>
+          {/* </div> */}
+          </tr>
         )})}
+      </tbody>
+      </table>
       </section>
     </div>
   )

@@ -23,7 +23,7 @@
 }
 
 .blank {
-  background-color: rgba(119, 119, 119, 0);
+  background-color: rgba(119, 119, 119);
   color: white;
   width: 30px;
   min-width: 30px;
@@ -41,6 +41,11 @@
   margin: 10px 10px 0px 0px;
   width: 100px;
   text-align: left;
+}
+
+.cityName {
+  display: flex;
+  flex-direction: row;
 }
 
 label {

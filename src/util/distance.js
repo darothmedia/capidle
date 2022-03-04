@@ -8,10 +8,10 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
     Math.sin(dLon / 2) * Math.sin(dLon / 2)
     ;
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  var d = R * c; // Distance in km
-  var res = (0.621371 * d).toFixed(0)
-  if (res == 0) {return "YOU WIN"}
-  else { return res + " mi";}
+  var km = (R * c).toFixed(0); // Distance in km
+  var mi = (0.621371 * km).toFixed(0)
+  if (mi == 0) {return "YOU WIN"}
+  else { return mi + " mi";}
 }
 
 function deg2rad(deg) {
