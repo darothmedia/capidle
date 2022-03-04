@@ -14,23 +14,23 @@
 .char {
   background-color: darkgrey;
   color: white;
-  width: 30px;
-  min-width: 30px;
-  height: 30px;
-  margin: 2px;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  margin: 1px;
   text-align: center;
-  padding: 10px 5px 0px 5px;
+  padding: 5px 5px 5px 5px;
 }
 
 .blank {
   background-color: rgba(119, 119, 119);
   color: white;
-  width: 30px;
-  min-width: 30px;
-  height: 30px;
-  margin: 2px;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  margin: 1px;
   text-align: center;
-  padding: 10px 5px 0px 5px;
+  padding: 5px 5px 5px 5px;
 }
 
 .inputwrap {
@@ -41,11 +41,26 @@
   margin: 10px 10px 0px 0px;
   width: 100px;
   text-align: left;
+  border-right: 1px solid black;
 }
 
 .cityName {
   display: flex;
   flex-direction: row;
+  padding-left: 10px;
+}
+
+.distanceCell {
+  width: 160px;
+  padding-bottom: 20px;
+  text-align: left;
+  border-right: 1px solid black;
+}
+
+.cityCell {
+  text-align: left;
+  padding-bottom: 20px;
+  padding-left: 10px;
 }
 
 label {
@@ -54,4 +69,8 @@ label {
 
 input {
   margin-right: 10px;
+}
+
+table {
+  border-spacing: 0px;
 }

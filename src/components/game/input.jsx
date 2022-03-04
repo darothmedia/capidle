@@ -52,11 +52,11 @@ const Input = props => {
       </form> : `Winner with ${cities.length} guesses!`}
       
       <section className="cities">
-        <table>
+        <table className="cityTable">
           <thead>
             <tr>
-              <th>Distance from Target</th>
-              <th>Guessed City</th>
+              <th className="distanceCell">Target Distance</th>
+              <th className="cityCell">Guessed City</th>
             </tr>
           </thead>
         <tbody>

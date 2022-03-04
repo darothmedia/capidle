@@ -11,7 +11,7 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
   var km = (R * c).toFixed(0); // Distance in km
   var mi = (0.621371 * km).toFixed(0)
   if (mi == 0) {return "YOU WIN"}
-  else { return mi + " mi";}
+  else { return mi + " mi / " + km + " km";}
 }
 
 function deg2rad(deg) {
