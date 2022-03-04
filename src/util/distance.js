@@ -9,7 +9,9 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
     ;
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var d = R * c; // Distance in km
-  return d;
+  var res = (0.621371 * d).toFixed(0)
+  if (res == 0) {return "YOU WIN"}
+  else { return res + " mi";}
 }
 
 function deg2rad(deg) {
