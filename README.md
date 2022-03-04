@@ -1,2 +1,3 @@
-# citadle
-A geographic city-based take on Wordle
+#Citadle
+
+A geographic riff on Wordle
