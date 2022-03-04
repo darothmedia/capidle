@@ -13,6 +13,7 @@ const mDTP = dispatch => ({
 const Input = props => {
   const [cities, setCities] = useState([])
   const [city, setCity] = useState("")
+  const {searchCity} = props
 
   const handleChange = e => {
     setCity(e.target.value)
@@ -20,6 +21,7 @@ const Input = props => {
 
   const submitCity = e => {
     e.preventDefault()
+    searchCity(city)
     setCities([...cities, city])
     setCity("")
   }
