@@ -1,27 +1,13 @@
 import React, {useState} from "react";
+import { Navigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const Splash = props => {
-  const [cities, setCities] = useState([])
-  const [city, setCity] = useState("")
-  
-  const handleChange = e => {
-    setCity(e.target.value)
-  }
-  
-  const submitCity = e => {
-    e.preventDefault()
-    setCities([...cities, city])
-    setCity("")
-  }
-  
   return(
     <div id='splashwrap'>
-      <form onSubmit={submitCity}>
-        <input type="text" onChange={handleChange} value={city} />
-      </form>
-      {cities.map((city, i) => (
-        <div key={i}>{city}</div>
-      ))}
+      <h1>Citadle</h1>
+      <h3>The 🌎 🏙️ Guessing Game</h3>
+      <Link to='/play'><button>Play</button></Link>
     </div>
   )
 }
