@@ -17,7 +17,7 @@ const Input = props => {
   const [cities, setCities] = useState([])
   const [city, setCity] = useState("")
   const [won, setWon] = useState(false)
-  const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
+  const [targetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
   const {searchCity, cityResults} = props
 
   useEffect(() => {
@@ -30,9 +30,9 @@ const Input = props => {
 
   const submitCity = e => {
     e.preventDefault()
-    if (cityResults[city]) {
+    if (cityResults[city] === cityResults[targetCity]) {
       setWon(true)
-    } else {
+    } else if (!cityResults[city]) {
       searchCity(city)
     }
     setCities([city, ...cities])
