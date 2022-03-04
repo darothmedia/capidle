@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { searchCity } from "../../actions/geo_actions";
 import getDistance from "../../util/distance";
 import Targets from "../../util/target_cities";
+import { Link } from "react-router-dom";
 
 
 const mSTP = state => ({
@@ -17,12 +18,12 @@ const Input = props => {
   const [cities, setCities] = useState([])
   const [city, setCity] = useState("")
   const [won, setWon] = useState(false)
-  const [targetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
+  const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
   const {searchCity, cityResults} = props
 
   useEffect(() => {
     searchCity(targetCity)
-  }, [])
+  }, [targetCity])
 
   const handleChange = e => {
     setCity(e.target.value)
@@ -37,6 +38,12 @@ const Input = props => {
     }
     setCities([city, ...cities])
     setCity("")
+  }
+
+  function reset() {
+    setCities([])
+    setWon(false)
+    setTargetCity(Targets[Math.floor(Math.random() * Targets.length)])
   }
 
   let curCity = {}
@@ -54,16 +61,16 @@ const Input = props => {
       <section className="cities">
         <table className="cityTable">
           <thead>
-            <tr>
-              <th className="distanceCell">Target Distance</th>
-              <th className="cityCell">Guessed City</th>
+            <tr className="headerRow">
+              <th className="distanceHead">Target Distance 📍</th>
+              <th className="cityHead">Guessed City 🏙️</th>
             </tr>
           </thead>
         <tbody>
         {cities.map((city, i) => {
           curCity = cityResults[city]
           return(
-          <tr key={i}>
+          <tr key={i} className="cityRow">
           {/* <div className="citywrap"> */}
               <td className="cityInfo">{curCity ? 
                 getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude) : null}</td>
@@ -87,6 +94,9 @@ const Input = props => {
       </tbody>
       </table>
       </section>
+      <div className="replay">
+        {won ? <button onClick={() => reset()}>Play Again</button> : null}
+      </div>
     </div>
   )
 }
