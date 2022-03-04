@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { searchCity } from "../../actions/geo_actions";
+import getDistance from "../../util/distance";
 
 const mSTP = state => ({
-
+  cityResults: state.entities.cities
 })
 
 const mDTP = dispatch => ({
@@ -13,7 +14,7 @@ const mDTP = dispatch => ({
 const Input = props => {
   const [cities, setCities] = useState([])
   const [city, setCity] = useState("")
-  const {searchCity} = props
+  const {searchCity, cityResults} = props
 
   const handleChange = e => {
     setCity(e.target.value)
@@ -26,6 +27,8 @@ const Input = props => {
     setCity("")
   }
 
+  let curCity = {}
+
   return (
     <div id='inputwrap'>
       <h1>Citadle</h1>
@@ -34,9 +37,12 @@ const Input = props => {
       </form>
       <section className="cities">
         {cities.map((city, i) => {
-          if (city.length % 2 !== 0) {city = city + " "}
+          curCity = cityResults[city]
           return(
-          <div key={i} className="citywrap">{city.toUpperCase().split('').map(
+          <div key={i} className="citywrap">
+              {curCity ? 
+                getDistance(curCity.latitude, curCity.longitude, 40.730610, -73.935242) : null}
+            {city.toUpperCase().split('').map(
             (char, i) => {
               if (char === " ") {
                 return (
