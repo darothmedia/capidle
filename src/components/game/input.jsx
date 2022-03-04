@@ -4,6 +4,7 @@ import { searchCity } from "../../actions/geo_actions";
 import getDistance from "../../util/distance";
 import Targets from "../../util/target_cities";
 import { Link } from "react-router-dom";
+import cityDisplay from "../../util/city_display";
 
 
 const mSTP = state => ({
@@ -20,6 +21,7 @@ const Input = props => {
   const [won, setWon] = useState(false)
   const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
   const {searchCity, cityResults} = props
+  const cityArray = Object.keys(cityResults)
 
   useEffect(() => {
     searchCity(targetCity)
@@ -69,28 +71,36 @@ const Input = props => {
         <tbody>
         {cities.map((city, i) => {
           curCity = cityResults[city]
-          return(
-          <tr key={i} className="cityRow">
-          {/* <div className="citywrap"> */}
-              <td className="cityInfo">{curCity ? 
-                getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude) : null}</td>
-            <td className='cityName'>
-            {city.toUpperCase().split('').map(
-            (char, i) => {
-              if (char === " ") {
-                return (
-                  <p key={`c${i}`} className="blank">{char}</p>
-                )
-              }
-              return (
-                <p key={`c${i}`} className="char">{char}</p>
-              )
-            }
-          )}
-              </td>
-          {/* </div> */}
-          </tr>
-        )})}
+          if (curCity) {
+            return(
+              <tr key={i} className="cityRow">
+                  <td className="cityInfo">{ 
+                    getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude)
+                  }
+                  </td>
+                {cityDisplay(curCity.city)}
+              </tr>
+            )
+          } else if (curCity && !curCity) {
+            return(
+              <tr key={i} className="cityRow">
+                <td className="cityInfo">
+                  City not found
+                </td>
+                {cityDisplay(city)}
+              </tr>
+            )
+          } else {
+            return (
+              <tr key={i} className="cityRow">
+                <td className="cityInfo">
+                  Searching
+                </td>
+                {cityDisplay(city)}
+              </tr>
+            )
+          }
+        })}
       </tbody>
       </table>
       </section>
