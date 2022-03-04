@@ -25,9 +25,9 @@ const Input = props => {
 
   useEffect(() => {
     searchCity(targetCity)
-    if (searchBar.current) {
-      searchBar.current.focus()
-    }
+    // if (searchBar.current) {
+    //   searchBar.current.focus()
+    // }
   }, [targetCity])
 
   const handleChange = e => {
