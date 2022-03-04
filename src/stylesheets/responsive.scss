@@ -1,0 +1,32 @@
+@media only screen and (max-width: 600px) {
+  .distanceHead {
+    width: 110px;
+    font-size: 10px;
+  }
+
+  .cityHead {
+    font-size: 10px;
+  }
+  .cityInfo {
+    width: 70px;
+    font-size: 8px;
+  }
+
+  .cityName {
+    max-width: calc(90vw - 120px);
+  }
+
+  .char, .blank {
+    width: 10px;
+    min-width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-align: center;
+    padding: 2px 2px 3px 2px;
+    font-size: 10px;
+  }
+
+  .cities {
+    width: 90vw;
+  }
+}

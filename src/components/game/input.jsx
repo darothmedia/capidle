@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { searchCity } from "../../actions/geo_actions";
 import getDistance from "../../util/distance";
 import Targets from "../../util/target_cities";
-import { Link } from "react-router-dom";
 import cityDisplay from "../../util/city_display";
 
 
@@ -22,9 +21,13 @@ const Input = props => {
   const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
   const {searchCity, cityResults} = props
   const cityArray = Object.keys(cityResults)
+  const searchBar = useRef()
 
   useEffect(() => {
     searchCity(targetCity)
+    if (searchBar.current) {
+      searchBar.current.focus()
+    }
   }, [targetCity])
 
   const handleChange = e => {
@@ -56,7 +59,7 @@ const Input = props => {
       <h1>Citadle</h1>
       {!won ? <form onSubmit={submitCity}>
         <label htmlFor="city">Guess a City:</label>
-        <input type="text" onChange={handleChange} value={city} />
+        <input type="text" onChange={handleChange} value={city} ref={searchBar} />
         <button onClick={submitCity}>Guess</button>
       </form> : `Winner with ${cities.length} guesses!`}
       
