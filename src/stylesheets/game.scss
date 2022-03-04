@@ -1,6 +1,6 @@
 .cities {
   margin-top: 20px;
-  width: 600px;
+  width: 80vw;
   display: flex;
   flex-direction: column;
 }
@@ -53,6 +53,8 @@
   flex-direction: row;
   padding-left: 10px;
   margin: 5px 0px 5px 0px;
+  max-width: calc(80vw - 190px);
+  overflow: scroll;
 }
 
 .distanceHead {
@@ -88,6 +90,7 @@ input {
 table {
   border-spacing: 0px;
   background-color: rgb(238, 238, 238);
+  padding: 0px;
 }
 
 button {

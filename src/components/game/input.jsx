@@ -81,7 +81,7 @@ const Input = props => {
                 {cityDisplay(curCity.city)}
               </tr>
             )
-          } else if (curCity && !curCity) {
+          } else if (cityArray.includes(city)) {
             return(
               <tr key={i} className="cityRow">
                 <td className="cityInfo">
