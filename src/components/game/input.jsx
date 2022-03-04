@@ -46,7 +46,9 @@ const Input = props => {
     <div id='inputwrap'>
       <h1>Citadle</h1>
       {!won ? <form onSubmit={submitCity}>
+        <label htmlFor="city">Guess a City:</label>
         <input type="text" onChange={handleChange} value={city} />
+        <button onClick={submitCity}>Guess</button>
       </form> : `Winner with ${cities.length} guesses!`}
       
       <section className="cities">
@@ -54,8 +56,8 @@ const Input = props => {
           curCity = cityResults[city]
           return(
           <div key={i} className="citywrap">
-              {curCity ? 
-                getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude) : null}
+              <p className="cityInfo">{curCity ? 
+                getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude) : null}</p>
             {city.toUpperCase().split('').map(
             (char, i) => {
               if (char === " ") {

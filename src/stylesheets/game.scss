@@ -1,12 +1,12 @@
 .cities {
   margin-top: 20px;
-  width: 80vw;
+  width: 600px;
   display: flex;
   flex-direction: column;
 }
 
 .citywrap {
-  justify-content: center;
+  justify-content: left;
   display: flex;
   flex-direction: row;
 }
@@ -35,4 +35,18 @@
 
 .inputwrap {
   justify-content: left;
+}
+
+.cityInfo {
+  margin: 10px 10px 0px 0px;
+  width: 100px;
+  text-align: left;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  margin-right: 10px;
 }
