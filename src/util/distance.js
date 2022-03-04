@@ -10,8 +10,15 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var km = (R * c).toFixed(0); // Distance in km
   var mi = (0.621371 * km).toFixed(0)
+  let card = ""
+  lat1 - lat2 > 0 ? card = "S" : card = "N"
+  let long = lon1 - lon2
+  if ((long > 0) && card === "S") {card = "↙️"}
+  if ((long < 0) && card === "S") { card = "↘️"}
+  if ((long > 0) && card === "N") { card = "↖️" }
+  if ((long < 0) && card === "N") { card = "↗️" }
   if (mi == 0) {return "YOU WIN"}
-  else { return mi + " mi / " + km + " km";}
+  else { return mi + " mi / " + km + " km " + card;}
 }
 
 function deg2rad(deg) {
