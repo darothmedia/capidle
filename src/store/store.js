@@ -5,6 +5,7 @@ import { applyMiddleware, createStore } from "redux";
 
 const configureStore = (pState = {}) => (
   createStore(RootReducer, pState, applyMiddleware(thunk, logger))
+  // createStore(RootReducer, pState)
 )
 
 export default configureStore
