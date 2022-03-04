@@ -17,7 +17,7 @@ const mDTP = dispatch => ({
 const Input = props => {
   const [cities, setCities] = useState([])
   const [city, setCity] = useState("")
-  const [won, setWon] = useState(false)
+  const [won, setWon] = useState("no")
   const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
   const {searchCity, cityResults} = props
   const cityArray = Object.keys(cityResults)
@@ -37,7 +37,7 @@ const Input = props => {
   const submitCity = e => {
     e.preventDefault()
     if (cityResults[city] === cityResults[targetCity]) {
-      setWon(true)
+      setWon("yes")
     } else if (!cityResults[city]) {
       searchCity(city)
     }
@@ -47,7 +47,7 @@ const Input = props => {
 
   function reset() {
     setCities([])
-    setWon(false)
+    setWon("no")
     setTargetCity(Targets[Math.floor(Math.random() * Targets.length)])
   }
 
@@ -57,7 +57,7 @@ const Input = props => {
   return (
     <div id='inputwrap'>
       <h1>Citadle</h1>
-      {won === false ? <form onSubmit={submitCity}>
+      {won === "no" ? <form onSubmit={submitCity}>
         <label htmlFor="city">Guess a City:</label>
         <input type="text" onChange={handleChange} value={city} ref={searchBar} />
         <button onClick={submitCity}>Guess</button>
@@ -108,7 +108,7 @@ const Input = props => {
       </table>
       </section>
       <div className="replay">
-        {won ? <button onClick={() => reset()}>Play Again</button> : null}
+        {won === "yes" ? <button onClick={() => reset()}>Play Again</button> : null}
       </div>
     </div>
   )
