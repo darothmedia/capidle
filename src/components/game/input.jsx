@@ -1,4 +1,14 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { searchCity } from "../../actions/geo_actions";
+
+const mSTP = state => ({
+
+})
+
+const mDTP = dispatch => ({
+  searchCity: searchTerm => dispatch(searchCity(searchTerm))
+})
 
 const Input = props => {
   const [cities, setCities] = useState([])
@@ -42,4 +52,4 @@ const Input = props => {
   )
 }
 
-export default Input
+export default connect(mSTP, mDTP)(Input)
