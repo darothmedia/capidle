@@ -1,9 +1,12 @@
 .cities {
   margin-top: 20px;
   width: 80vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .citywrap {
+  justify-content: center;
   display: flex;
   flex-direction: row;
 }
@@ -20,7 +23,7 @@
 }
 
 .blank {
-  background-color: rgb(119, 119, 119);
+  background-color: rgba(119, 119, 119, 0);
   color: white;
   width: 30px;
   min-width: 30px;
@@ -32,5 +35,4 @@
 
 .inputwrap {
   justify-content: left;
-  width: 800px;
 }

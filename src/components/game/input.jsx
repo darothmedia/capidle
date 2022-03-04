@@ -22,7 +22,9 @@ const Input = props => {
         <input type="text" onChange={handleChange} value={city} />
       </form>
       <section className="cities">
-        {cities.map((city, i) => (
+        {cities.map((city, i) => {
+          if (city.length % 2 !== 0) {city = city + " "}
+          return(
           <div key={i} className="citywrap">{city.toUpperCase().split('').map(
             (char, i) => {
               if (char === " ") {
@@ -35,7 +37,7 @@ const Input = props => {
               )
             }
           )}</div>
-        ))}
+        )})}
       </section>
     </div>
   )
