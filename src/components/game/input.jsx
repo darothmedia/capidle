@@ -17,23 +17,26 @@ const Input = props => {
 
   return (
     <div id='inputwrap'>
-      <Link to='/'><button>Home</button></Link>
       <h1>Citadle</h1>
       <form onSubmit={submitCity}>
         <input type="text" onChange={handleChange} value={city} />
       </form>
-      {cities.map((city, i) => (
-        <div key={i} className="citywrap">{city.toUpperCase().split('').map(
-          (char, i) => {
-            if (char === " "){return(
-              <div key={`c${i}`} className="blank">{char}</div>
-            )}
-            return(
-              <div key={`c${i}`} className="char">{char}</div>
-            )
-          }
+      <section className="cities">
+        {cities.map((city, i) => (
+          <div key={i} className="citywrap">{city.toUpperCase().split('').map(
+            (char, i) => {
+              if (char === " ") {
+                return (
+                  <div key={`c${i}`} className="blank">{char}</div>
+                )
+              }
+              return (
+                <div key={`c${i}`} className="char">{char}</div>
+              )
+            }
           )}</div>
-      ))}
+        ))}
+      </section>
     </div>
   )
 }
