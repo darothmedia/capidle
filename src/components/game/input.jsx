@@ -57,7 +57,7 @@ const Input = props => {
   return (
     <div id='inputwrap'>
       <h1>Citadle</h1>
-      {!won ? <form onSubmit={submitCity}>
+      {won === false ? <form onSubmit={submitCity}>
         <label htmlFor="city">Guess a City:</label>
         <input type="text" onChange={handleChange} value={city} ref={searchBar} />
         <button onClick={submitCity}>Guess</button>
