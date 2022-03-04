@@ -17,5 +17,5 @@ export const receiveErrors = errors => ({
 export const searchCity = searchTerm => dispatch => 
   GeoUtil.searchCity(searchTerm)
     .then((city) => dispatch(receiveCity(city.data.data[0], searchTerm)),
-      errors => dispatch(receiveErrors(errors))
+      errors => dispatch(receiveErrors(errors.response))
     );
