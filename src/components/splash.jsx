@@ -15,7 +15,8 @@ const Splash = props => {
   }, [clearErrors])
 
   return(
-    <div id='bodywrap'>
+    <div>
+      <div className="spacer"></div>
       <h1>Citadle</h1>
       <h3>The 🌎 🏙️ Guessing Game</h3>
       <p className="gameinfo">

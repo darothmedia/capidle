@@ -5,6 +5,7 @@ import getDistance from "../../util/distance";
 import Targets from "../../util/target_cities";
 import cityDisplay from "../../util/city_display";
 import Nav from "../nav";
+import World from "../../img/world.png"
 
 
 const mSTP = state => ({
@@ -72,12 +73,13 @@ const Input = props => {
     <>
     <div id='inputwrap'>
       <h1>Citadle</h1>
+      
       {won === false ? <form onSubmit={submitCity}>
         <label htmlFor="city">Guess a City:</label>
         <input type="text" onChange={handleChange} value={city} ref={searchBar} />
         <button onClick={submitCity}>Guess</button>
       </form> : `Winner with ${cities.length} guesses!`}
-      
+      <img src={World} className="worldMap" alt="world-map" />
       <section className="cities">
         <table className="cityTable">
           <thead>
