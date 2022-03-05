@@ -7,7 +7,8 @@ import cityDisplay from "../../util/city_display";
 
 
 const mSTP = state => ({
-  cityResults: state.entities.cities
+  cityResults: state.entities.cities,
+  errors: state.errors.search
 })
 
 const mDTP = dispatch => ({
@@ -19,7 +20,7 @@ const Input = props => {
   const [city, setCity] = useState("")
   const [won, setWon] = useState(false)
   const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
-  const {searchCity, cityResults} = props
+  const {searchCity, cityResults, errors} = props
   const cityArray = Object.keys(cityResults)
   const searchBar = useRef()
 
@@ -55,6 +56,16 @@ const Input = props => {
 
   let curCity = {}
   const target = cityResults[targetCity]
+
+  if (errors[429]) {
+    return (
+      <div>
+        <h1>Citadle</h1>
+        <error>Error: Daily API Limit reached!</error>
+      </div>
+      
+    )
+  }
 
   return (
     <div id='inputwrap'>

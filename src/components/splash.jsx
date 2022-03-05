@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
+import { clearErrors } from "../actions/geo_actions";
+import { connect } from "react-redux";
+
+const mSTP = state => ({})
+const mDTP = dispatch => ({
+  clearErrors: () => dispatch(clearErrors())
+})
 
 const Splash = props => {
+  const {clearErrors} = props
+  useEffect(() => {
+    clearErrors()
+  }, [clearErrors])
   return(
     <div id='splashwrap'>
       <h1>Citadle</h1>
@@ -11,4 +22,4 @@ const Splash = props => {
   )
 }
 
-export default Splash
+export default connect(mSTP, mDTP)(Splash)
