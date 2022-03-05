@@ -13,11 +13,14 @@ const Splash = props => {
   useEffect(() => {
     clearErrors()
   }, [clearErrors])
+
   return(
     <div id='splashwrap'>
       <h1>Citadle</h1>
       <h3>The 🌎 🏙️ Guessing Game</h3>
-      <Link to='/play'><button>Play</button></Link>
+      <div>
+        <Link to='/play'><button>Play</button></Link>
+      </div>
     </div>
   )
 }
