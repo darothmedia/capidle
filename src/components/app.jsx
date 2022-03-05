@@ -8,7 +8,11 @@ import HowToPlay from "./game/howtoplay";
 const App = props => {
   return(
     <div className="outerwrap">
-      <Nav />
+      <Routes>
+        <Route path='/' element={null} />
+        <Route path='/play' element={<Nav />}/>
+        <Route path='/howtoplay' element={<Nav />}/>
+      </Routes>
       <div className="bodywrap">
         <Routes>
           <Route path='/' element={<Splash/>}/>

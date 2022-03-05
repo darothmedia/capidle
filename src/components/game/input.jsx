@@ -4,6 +4,7 @@ import { searchCity } from "../../actions/geo_actions";
 import getDistance from "../../util/distance";
 import Targets from "../../util/target_cities";
 import cityDisplay from "../../util/city_display";
+import Nav from "../nav";
 
 
 const mSTP = state => ({
@@ -61,13 +62,14 @@ const Input = props => {
     return (
       <div>
         <h1>Citadle</h1>
-        <error>Error: Daily API Limit reached!</error>
+        <p className="error">Error: Daily API Limit reached!</p>
+        <Nav />
       </div>
-      
     )
   }
 
   return (
+    <>
     <div id='inputwrap'>
       <h1>Citadle</h1>
       {won === false ? <form onSubmit={submitCity}>
@@ -124,6 +126,7 @@ const Input = props => {
         {won ? <button onClick={() => reset()}>Play Again</button> : null}
       </div>
     </div>
+    </>
   )
 }
 
