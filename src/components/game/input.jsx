@@ -78,7 +78,7 @@ const Input = props => {
         <label htmlFor="city">Guess a City:</label>
         <input type="text" onChange={handleChange} value={city} ref={searchBar} />
         <button onClick={submitCity}>Guess</button>
-      </form> : `Winner with ${cities.length} guesses!`}
+        </form> : <div>{`Winner with ${cities.length} guesses!`}</div>}
       <img src={World} className="worldMap" alt="world-map" />
       <section className="cities">
         <table className="cityTable">
