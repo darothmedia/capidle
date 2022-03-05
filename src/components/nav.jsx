@@ -5,7 +5,7 @@ const Nav = props => {
   return(
     <div>
     <Link to='/'><button>Home</button></Link>
-    <Link to='/howtoplay'><button>How to Play</button></Link>
+    {/* <Link to='/howtoplay'><button>How to Play</button></Link> */}
     </div>
   )
 }
