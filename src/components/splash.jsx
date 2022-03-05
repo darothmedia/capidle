@@ -19,7 +19,7 @@ const Splash = props => {
       <h1>Citadle</h1>
       <h3>The 🌎 🏙️ Guessing Game</h3>
       <p className="gameinfo">
-        Tests your geography skills! Enter a city
+        Test your geography skills! Enter a city
         name, and see how far away that city is from the (secret!) target city.
         How quickly can you guess the target?
       </p>
