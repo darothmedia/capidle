@@ -4,7 +4,7 @@ const Map = props => {
   const mapRef = useRef(null)
   const {mapPins} = props
 
-  const draw = (ctx, arr) => {
+  const drawPin = (ctx, arr) => {
     ctx.fillStyle = '#FF0000'
     ctx.strokeStyle = '#000000'
     ctx.beginPath()
@@ -15,7 +15,13 @@ const Map = props => {
     ctx.moveTo(arr[1], (arr[0] - 8))
     ctx.arc(arr[1], (arr[0] - 8), 2.5, 0, 2 * Math.PI)
     ctx.fill()
-    
+  }
+
+  const drawStar = (ctx, arr) => {
+    ctx.fillStyle = '#FFD700'
+    ctx.beginPath()
+    ctx.arc(arr[1], (arr[0]), 2.5, 0, 2 * Math.PI)
+    ctx.fill()
   }
 
   useEffect(() => {
@@ -24,10 +30,10 @@ const Map = props => {
 
     if (mapPins.length > 0){
       mapPins.map((pin) => {
-        draw(context, pin)
+        drawPin(context, pin)
       })
     }
-  }, [mapPins, draw])
+  }, [mapPins, drawPin])
 
   return(
       <canvas className="worldCanvas" ref={mapRef} />

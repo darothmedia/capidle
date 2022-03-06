@@ -22,13 +22,15 @@ const Input = props => {
   const [mapPins, setMapPins] = useState([])
   const [city, setCity] = useState("")
   const [won, setWon] = useState(false)
+  const [winPin, setWinPin] = useState([])
   const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
   const {searchCity, cityResults, errors} = props
   const cityArray = Object.keys(cityResults)
   const searchBar = useRef()
+  const target = cityResults[targetCity]
 
   useEffect(() => {
-    if (!cityResults[targetCity]){
+    if (!target){
       searchCity(targetCity)
     }
     if (searchBar.current) {
@@ -42,8 +44,9 @@ const Input = props => {
 
   const submitCity = e => {
     e.preventDefault()
-    if (cityResults[city] === cityResults[targetCity]) {
+    if (cityResults[city] === target) {
       setWon(true)
+      setWinPin([target.latitude, target.longitude])
     } else if (!cityResults[city]) {
       searchCity(city)
         .then(res => {
@@ -62,7 +65,6 @@ const Input = props => {
   }
 
   let curCity = {}
-  const target = cityResults[targetCity]
 
   if (errors[429]) {
     return (
@@ -86,7 +88,7 @@ const Input = props => {
 
       <div className="worldDiv">
           <img src={World} className="worldMap" alt="world-map" />
-          <Map mapPins={mapPins} /> 
+          <Map mapPins={mapPins} winPin={winPin} /> 
       </div>
       <section className="cities">
         <table className="cityTable">
@@ -97,8 +99,8 @@ const Input = props => {
             </tr>
           </thead>
         <tbody>
-        {cities.map((city, i) => {
-          curCity = cityResults[city]
+        {cities.map((cityInd, i) => {
+          curCity = cityResults[cityInd]
           if (curCity) {
             return(
               <tr key={i} className="cityRow">
@@ -109,13 +111,13 @@ const Input = props => {
                 {cityDisplay(curCity.city)}
               </tr>
             )
-          } else if (cityArray.includes(city)) {
+          } else if (cityArray.includes(cityInd)) {
             return(
               <tr key={i} className="cityRow">
                 <td className="cityInfo">
                   City not found
                 </td>
-                {cityDisplay(city)}
+                {cityDisplay(cityInd)}
               </tr>
             )
           } else {
@@ -124,7 +126,7 @@ const Input = props => {
                 <td className="cityInfo">
                   Searching
                 </td>
-                {cityDisplay(city)}
+                {cityDisplay(cityInd)}
               </tr>
             )
           }
