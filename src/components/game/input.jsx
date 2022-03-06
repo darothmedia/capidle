@@ -6,6 +6,8 @@ import Targets from "../../util/target_cities";
 import cityDisplay from "../../util/city_display";
 import World from "../../img/world.png"
 import Map from "./map";
+import ArrowRight from '@mui/icons-material/ArrowCircleRight'
+import { InputAdornment, IconButton, InputLabel, FormControl, FilledInput } from "@mui/material";
 
 
 const mSTP = state => ({
@@ -17,7 +19,7 @@ const mDTP = dispatch => ({
   searchCity: searchTerm => dispatch(searchCity(searchTerm))
 })
 
-const Input = props => {
+const GameView = props => {
   const [cities, setCities] = useState([])
   const [mapPins, setMapPins] = useState([])
   const [city, setCity] = useState("")
@@ -33,9 +35,6 @@ const Input = props => {
     if (!target){
       searchCity(targetCity)
     }
-    if (searchBar.current) {
-      searchBar.current.focus()
-    }
   }, [targetCity, won])
 
   const handleChange = e => {
@@ -47,17 +46,19 @@ const Input = props => {
     if (!cityResults[city]) {
       searchCity(city)
         .then(res => {
-          if (res.city.city === target.city) {
+          if (!res.city){}
+          else if (res.city.id === target.id) {
             setWon(true)
-            setWinPin([[target.latitude, target.longitude]])
+            setWinPin([pinLoc(target.latitude, target.longitude)])
           } else {
             setMapPins([...mapPins, pinLoc(res.city.latitude, res.city.longitude)])
           }
         }
         )
-    } else if (cityResults[city].city === target.city) {
+    } else if (!cityResults[city].id){} 
+    else if (cityResults[city].id === target.id) {
       setWon(true)
-      setWinPin([[target.latitude, target.longitude]])
+      setWinPin([pinLoc(target.latitude, target.longitude)])
     } 
     setCities([city, ...cities])
     setCity("")
@@ -88,9 +89,26 @@ const Input = props => {
       <h1>Citadle</h1>
       
       {won === false ? <form onSubmit={submitCity}>
-        <label htmlFor="city">Guess a City:</label>
-        <input type="text" onChange={handleChange} value={city} ref={searchBar} />
-        <button onClick={submitCity}>Guess</button>
+      <FormControl sx={{ m: 1, width: '40ch' }} variant="filled">
+        <InputLabel htmlFor="guess">Guess a City</InputLabel>
+        <FilledInput 
+          id='guess' 
+          autoComplete="off"
+          onChange={handleChange} 
+          type="search"
+          value={city}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                onClick={submitCity}
+                edge="end"
+              ><ArrowRight /></IconButton>
+            </InputAdornment>
+          } 
+          />
+          </FormControl>
+        
+        
         </form> : <div>{`Winner with ${cities.length} guesses!`}</div>}
 
       <div className="worldDiv">
@@ -149,4 +167,4 @@ const Input = props => {
   )
 }
 
-export default connect(mSTP, mDTP)(Input)
+export default connect(mSTP, mDTP)(GameView)

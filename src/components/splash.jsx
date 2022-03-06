@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { clearErrors } from "../actions/geo_actions";
 import { connect } from "react-redux";
+import { Button } from "@mui/material"
 
 const mSTP = state => ({})
 const mDTP = dispatch => ({
@@ -25,7 +26,7 @@ const Splash = props => {
         How quickly can you guess the target?
       </p>
       <div>
-        <Link to='/play'><button>Play</button></Link>
+        <Link to='/play'><Button variant="contained">Play</Button></Link>
       </div>
     </div>
   )

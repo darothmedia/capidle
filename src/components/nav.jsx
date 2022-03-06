@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material"
 
 const Nav = props => {
   return(
     <div className="nav">
-    <Link to='/'><button>Home</button></Link>
+    <Link to='/'><Button variant="text">Home</Button></Link>
     {/* <Link to='/howtoplay'><button>How to Play</button></Link> */}
     </div>
   )

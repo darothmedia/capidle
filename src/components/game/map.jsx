@@ -20,7 +20,9 @@ const Map = props => {
   const drawStar = (ctx, arr) => {
     ctx.fillStyle = '#FFD700'
     ctx.beginPath()
+    ctx.moveTo(arr[1], arr[0])
     ctx.arc(arr[1], arr[0], 2.5, 0, 2 * Math.PI)
+    ctx.stroke()
     ctx.fill()
   }
 
@@ -37,7 +39,7 @@ const Map = props => {
         drawPin(context, pin)
       })
     }
-    if (winPin.length === 1) {
+    if (winPin.length > 0) {
       drawStar(context, winPin[0])
     }
     if (cities.length < 1){
