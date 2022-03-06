@@ -44,22 +44,29 @@ const Input = props => {
 
   const submitCity = e => {
     e.preventDefault()
-    if (cityResults[city] === target) {
-      setWon(true)
-      setWinPin([target.latitude, target.longitude])
-    } else if (!cityResults[city]) {
+    if (!cityResults[city]) {
       searchCity(city)
         .then(res => {
-          setMapPins([...mapPins, pinLoc(res.city.latitude, res.city.longitude)])
+          if (res.city.city === target.city) {
+            setWon(true)
+            setWinPin([[target.latitude, target.longitude]])
+          } else {
+            setMapPins([...mapPins, pinLoc(res.city.latitude, res.city.longitude)])
+          }
         }
         )
-    }
+    } else if (cityResults[city].city === target.city) {
+      setWon(true)
+      setWinPin([[target.latitude, target.longitude]])
+    } 
     setCities([city, ...cities])
     setCity("")
   }
 
   function reset() {
     setCities([])
+    setMapPins([])
+    setWinPin([])
     setWon(false)
     setTargetCity(Targets[Math.floor(Math.random() * Targets.length)])
   }
@@ -88,7 +95,7 @@ const Input = props => {
 
       <div className="worldDiv">
           <img src={World} className="worldMap" alt="world-map" />
-          <Map mapPins={mapPins} winPin={winPin} /> 
+          <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
       </div>
       <section className="cities">
         <table className="cityTable">

@@ -2,7 +2,7 @@ import React, {useRef, useEffect} from "react";
 
 const Map = props => {
   const mapRef = useRef(null)
-  const {mapPins} = props
+  const {mapPins, winPin, cities} = props
 
   const drawPin = (ctx, arr) => {
     ctx.fillStyle = '#FF0000'
@@ -20,8 +20,12 @@ const Map = props => {
   const drawStar = (ctx, arr) => {
     ctx.fillStyle = '#FFD700'
     ctx.beginPath()
-    ctx.arc(arr[1], (arr[0]), 2.5, 0, 2 * Math.PI)
+    ctx.arc(arr[1], arr[0], 2.5, 0, 2 * Math.PI)
     ctx.fill()
+  }
+
+  const clearMap = (ctx) => {
+    ctx.clearRect(0, 0, 400, 200)
   }
 
   useEffect(() => {
@@ -33,7 +37,13 @@ const Map = props => {
         drawPin(context, pin)
       })
     }
-  }, [mapPins, drawPin])
+    if (winPin.length === 1) {
+      drawStar(context, winPin[0])
+    }
+    if (cities.length < 1){
+      clearMap(context)
+    }
+  }, [mapPins, drawPin, winPin, cities])
 
   return(
       <canvas className="worldCanvas" ref={mapRef} />
