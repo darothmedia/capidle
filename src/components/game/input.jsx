@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { searchCity } from "../../actions/geo_actions";
-import getDistance from "../../util/distance";
+import {getDistance, pinLoc} from "../../util/distance";
 import Targets from "../../util/target_cities";
 import cityDisplay from "../../util/city_display";
-import Nav from "../nav";
 import World from "../../img/world.png"
+import Map from "./map";
 
 
 const mSTP = state => ({
@@ -19,6 +19,7 @@ const mDTP = dispatch => ({
 
 const Input = props => {
   const [cities, setCities] = useState([])
+  const [mapPins, setMapPins] = useState([])
   const [city, setCity] = useState("")
   const [won, setWon] = useState(false)
   const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
@@ -45,6 +46,10 @@ const Input = props => {
       setWon(true)
     } else if (!cityResults[city]) {
       searchCity(city)
+        .then(res => {
+          setMapPins([...mapPins, pinLoc(res.city.latitude, res.city.longitude)])
+        }
+        )
     }
     setCities([city, ...cities])
     setCity("")
@@ -64,14 +69,13 @@ const Input = props => {
       <div>
         <h1>Citadle</h1>
         <p className="error">Error: Daily API Limit reached!</p>
-        <Nav />
       </div>
     )
   }
 
   return (
     <>
-    <div id='inputwrap'>
+    <div className='inputwrap'>
       <h1>Citadle</h1>
       
       {won === false ? <form onSubmit={submitCity}>
@@ -79,7 +83,11 @@ const Input = props => {
         <input type="text" onChange={handleChange} value={city} ref={searchBar} />
         <button onClick={submitCity}>Guess</button>
         </form> : <div>{`Winner with ${cities.length} guesses!`}</div>}
-      <img src={World} className="worldMap" alt="world-map" />
+
+      <div className="worldDiv">
+          <img src={World} className="worldMap" alt="world-map" />
+          <Map mapPins={mapPins} /> 
+      </div>
       <section className="cities">
         <table className="cityTable">
           <thead>

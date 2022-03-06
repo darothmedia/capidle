@@ -1,4 +1,4 @@
-const getDistance = (lat1, lon1, lat2, lon2) => {
+export const getDistance = (lat1, lon1, lat2, lon2) => {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2 - lat1);  // deg2rad below
   var dLon = deg2rad(lon2 - lon1);
@@ -25,4 +25,14 @@ function deg2rad(deg) {
   return deg * (Math.PI / 180)
 }
 
-export default getDistance
+export const pinLoc = (lat, long) => {
+  let pin = []
+  lat > 0 ? 
+    pin.push(88 - (lat / 90 * 88)) :
+    pin.push(88 + ((lat * -1) / 90 * 88))
+  long < 0 ?
+    pin.push(125 - ((long * -1) / 180 * 150)) :
+    pin.push(125 + ((long / 180) * 150))
+  if (pin[1] < 0) {pin[1] = pin[1] * -1}
+  return pin
+}

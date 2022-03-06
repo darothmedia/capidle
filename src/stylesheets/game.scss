@@ -75,8 +75,22 @@
   width: 80vw;
 }
 
-.worldMap {
+.worldMap, .worldCanvas {
   width: 400px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
+
+.worldDiv {
+  position: relative;
+  height: 200px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.inputwrap {
+  justify-content: center;
+}
 
