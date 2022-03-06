@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/citadle/static/css/main.9c2c763f.css",
-    "main.js": "/citadle/static/js/main.65063eb8.js",
+    "main.css": "/citadle/static/css/main.dfb81eea.css",
+    "main.js": "/citadle/static/js/main.03da7e92.js",
     "static/js/787.197f1451.chunk.js": "/citadle/static/js/787.197f1451.chunk.js",
-    "static/media/world.png": "/citadle/static/media/world.c5c2cfc3b07a642a7687.png",
+    "static/media/world.png": "/citadle/static/media/world.52773d7ee1cffb04ae63.png",
     "index.html": "/citadle/index.html",
-    "main.9c2c763f.css.map": "/citadle/static/css/main.9c2c763f.css.map",
-    "main.65063eb8.js.map": "/citadle/static/js/main.65063eb8.js.map",
+    "main.dfb81eea.css.map": "/citadle/static/css/main.dfb81eea.css.map",
+    "main.03da7e92.js.map": "/citadle/static/js/main.03da7e92.js.map",
     "787.197f1451.chunk.js.map": "/citadle/static/js/787.197f1451.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c2c763f.css",
-    "static/js/main.65063eb8.js"
+    "static/css/main.dfb81eea.css",
+    "static/js/main.03da7e92.js"
   ]
 }
