@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Input from "./game/input";
+import Input from "./game/gameview";
 import Nav from "./nav";
 import Splash from "./splash";
 import HowToPlay from "./game/howtoplay";

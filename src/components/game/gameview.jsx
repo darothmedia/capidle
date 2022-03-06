@@ -7,7 +7,7 @@ import cityDisplay from "../../util/city_display";
 import World from "../../img/world.png"
 import Map from "./map";
 import ArrowRight from '@mui/icons-material/ArrowCircleRight'
-import { InputAdornment, IconButton, InputLabel, FormControl, FilledInput } from "@mui/material";
+import { InputAdornment, IconButton, InputLabel, FormControl, FilledInput, Table, TableBody, TableHead, TableCell, TableRow, TableContainer } from "@mui/material";
 
 
 const mSTP = state => ({
@@ -116,48 +116,48 @@ const GameView = props => {
           <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
       </div>
       <section className="cities">
-        <table className="cityTable">
-          <thead>
-            <tr className="headerRow">
-              <th className="distanceHead">Target Distance 📍</th>
-              <th className="cityHead">Guessed City 🏙️</th>
-            </tr>
-          </thead>
-        <tbody>
+        <Table className="cityTable">
+          <TableHead>
+            <TableRow className="headerRow">
+              <TableCell className="distanceHead">Target Distance 📍</TableCell>
+              <TableCell className="cityHead">Guessed City 🏙️</TableCell>
+            </TableRow>
+          </TableHead>
+        <TableBody>
         {cities.map((cityInd, i) => {
           curCity = cityResults[cityInd]
           if (curCity) {
             return(
-              <tr key={i} className="cityRow">
-                  <td className="cityInfo">{ 
+              <TableRow key={i} className="cityRow">
+                  <TableCell className="cityInfo">{ 
                     getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude)
                   }
-                  </td>
+                  </TableCell>
                 {cityDisplay(curCity.city)}
-              </tr>
+              </TableRow>
             )
           } else if (cityArray.includes(cityInd)) {
             return(
-              <tr key={i} className="cityRow">
-                <td className="cityInfo">
+              <TableRow key={i} className="cityRow">
+                <TableCell className="cityInfo">
                   City not found
-                </td>
+                </TableCell>
                 {cityDisplay(cityInd)}
-              </tr>
+              </TableRow>
             )
           } else {
             return (
-              <tr key={i} className="cityRow">
-                <td className="cityInfo">
+              <TableRow key={i} className="cityRow">
+                <TableCell className="cityInfo">
                   Searching
-                </td>
+                </TableCell>
                 {cityDisplay(cityInd)}
-              </tr>
+              </TableRow>
             )
           }
         })}
-      </tbody>
-      </table>
+      </TableBody>
+      </Table>
       </section>
       <div className="replay">
         {won ? <button onClick={() => reset()}>Play Again</button> : null}
