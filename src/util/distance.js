@@ -11,12 +11,25 @@ export const getDistance = (lat1, lon1, lat2, lon2) => {
   var km = (R * c).toFixed(0); // Distance in km
   var mi = (0.621371 * km).toFixed(0)
   let card = ""
-  lat1 - lat2 > 0 ? card = "S" : card = "N"
+  let lat = lat1 - lat2
   let long = lon1 - lon2
-  if ((long > 0) && card === "S") {card = "↙️"}
-  if ((long < 0) && card === "S") { card = "↘️"}
-  if ((long > 0) && card === "N") { card = "↖️" }
-  if ((long < 0) && card === "N") { card = "↗️" }
+
+  lat > 0 ? card = "S" : card = "N"
+  // -5 < lat < 5 ? card = "WE" : null
+
+  // if (card = "WE") {
+  //   if ((long > 0) && card === "WE") { card = "⬅" }
+  //   if ((long < 0) && card === "WE") { card = "➡️" }
+  // } else if (-50 < long < 50) {
+  //   if ((-50 < long < 50) && card === "S") { card = "⬇" }
+  //   if ((-50 < long < 50) && card === "N") { card = "⬆" }
+  // } else {
+    if ((long > 0) && card === "S") { card = "↙️" }
+    if ((long < 0) && card === "S") { card = "↘️" }
+    if ((long > 0) && card === "N") { card = "↖️" }
+    if ((long < 0) && card === "N") { card = "↗️" }
+  // }
+  
   if (mi == 0) {return "YOU WIN"}
   else { return mi + " mi / " + km + " km " + card;}
 }
