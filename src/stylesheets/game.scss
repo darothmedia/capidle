@@ -1,8 +1,10 @@
 .cities {
   margin-top: 20px;
   width: 80vw;
+  height: calc(100vh - 370px);
   display: flex;
   flex-direction: column;
+  background-color: darkgray;
 }
 
 .citywrap {
@@ -31,6 +33,7 @@
 
 .cityInfo {
   width: 100px;
+  height: 10px;
 }
 
 .cityName {
@@ -40,9 +43,10 @@
   margin: 5px 0px 5px 0px;
   max-width: calc(80vw - 190px);
   overflow: scroll;
+  height: 30px;
 }
 
-.distanceHead {
+#distanceHead {
   width: 180px;
 }
 
@@ -55,6 +59,7 @@
 
 .cityRow {
   margin-top: 10px;
+  height: 50px;
 }
 
 .replay {
@@ -62,6 +67,12 @@
 }
 
 .gameinfo {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.splashwrap {
   width: 80vw;
 }
 
@@ -82,5 +93,17 @@
 
 .inputwrap {
   justify-content: center;
+}
+
+.paperElement {
+  height: 100vh;
+  background-color: gray;
+  position: relative;
+}
+
+.arrowCont {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 

@@ -1,13 +1,14 @@
 @media only screen and (max-width: 600px) {
-  .distanceHead {
-    width: 110px;
-    font-size: 10px;
+  #distanceHead {
+    font-size: 12px;
+    width: 120px;
   }
 
-  .cityHead {
-    font-size: 10px;
+  #cityHead {
+    font-size: 12px;
   }
-  .cityInfo {
+
+  #cityInfo {
     width: 70px;
     font-size: 8px;
   }
@@ -26,7 +27,7 @@
     font-size: 10px;
   }
 
-  .cities {
+  .cities, .splashwrap {
     width: 90vw;
   }
 

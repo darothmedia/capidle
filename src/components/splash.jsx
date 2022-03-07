@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import { clearErrors } from "../actions/geo_actions";
 import { connect } from "react-redux";
-import { Button } from "@mui/material"
+import { Button, Paper } from "@mui/material"
 
 const mSTP = state => ({})
 const mDTP = dispatch => ({
@@ -16,19 +16,21 @@ const Splash = props => {
   }, [clearErrors])
 
   return(
-    <div>
-      <div className="spacer"></div>
-      <h1>Citadle</h1>
-      <h3>The 🌎 🏙️ Guessing Game</h3>
-      <p className="gameinfo">
-        Test your geography skills! Enter a city
-        name, and see how far away that city is from the (secret!) target city.
-        How quickly can you guess the target?
-      </p>
-      <div>
-        <Link to='/play'><Button variant="contained">Play</Button></Link>
+    <Paper>
+      <div className="splashwrap">
+        <h1>Citadle</h1>
+        <h3>The 🌎 🏙️ Guessing Game</h3>
+        <p className="gameinfo">
+          Test your geography skills! Enter a city
+          name, and see how far away that city is from the (secret!) target city.
+          How quickly can you guess the target?
+        </p>
+        <div>
+          <Link to='/play'><Button variant="contained">Play</Button></Link>
+        </div>
       </div>
-    </div>
+    <div className="spacer"></div>
+    </Paper>
   )
 }
 

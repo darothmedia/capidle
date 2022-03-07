@@ -41,10 +41,13 @@ button {
 body {
   margin: 0;
   font-family: "Roboto";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(65, 75, 143);
 }
 
 a {
   text-decoration: none;
+}
+
+h1 {
+  margin: 15px 0px 0px 0px;
 }

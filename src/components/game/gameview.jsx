@@ -6,8 +6,9 @@ import Targets from "../../util/target_cities";
 import cityDisplay from "../../util/city_display";
 import World from "../../img/world.png"
 import Map from "./map";
-import ArrowRight from '@mui/icons-material/ArrowCircleRight'
-import { InputAdornment, IconButton, InputLabel, FormControl, FilledInput, Table, TableBody, TableHead, TableCell, TableRow, TableContainer } from "@mui/material";
+import { ArrowBack, ArrowCircleRight } from "@mui/icons-material";
+import { InputAdornment, IconButton, InputLabel, FormControl, FilledInput, Table, TableBody, TableHead, TableCell, TableRow, Paper, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 
 const mSTP = state => ({
@@ -84,10 +85,14 @@ const GameView = props => {
   }
 
   return (
-    <>
+    <Paper className="paperElement" elevation={3}>
+      <div className="arrowCont">
+        <IconButton className="backArrow" >
+          <Link to='/'><ArrowBack /></Link>
+        </IconButton>
+      </div>
     <div className='inputwrap'>
       <h1>Citadle</h1>
-      
       {won === false ? <form onSubmit={submitCity}>
       <FormControl sx={{ m: 1, width: '40ch' }} variant="filled">
         <InputLabel htmlFor="guess">Guess a City</InputLabel>
@@ -102,7 +107,7 @@ const GameView = props => {
               <IconButton
                 onClick={submitCity}
                 edge="end"
-              ><ArrowRight /></IconButton>
+              ><ArrowCircleRight /></IconButton>
             </InputAdornment>
           } 
           />
@@ -110,6 +115,9 @@ const GameView = props => {
         
         
         </form> : <div>{`Winner with ${cities.length} guesses!`}</div>}
+        <div className="replay">
+          {won ? <Button variant="contained" onClick={() => reset()}>Play Again</Button> : null}
+        </div>
 
       <div className="worldDiv">
           <img src={World} className="worldMap" alt="world-map" />
@@ -119,11 +127,11 @@ const GameView = props => {
         <Table className="cityTable">
           <TableHead>
             <TableRow className="headerRow">
-              <TableCell className="distanceHead">Target Distance 📍</TableCell>
-              <TableCell className="cityHead">Guessed City 🏙️</TableCell>
+              <TableCell id="distanceHead">Target Distance 📍</TableCell>
+              <TableCell id="cityHead">Guessed City 🏙️</TableCell>
             </TableRow>
           </TableHead>
-        <TableBody>
+        <TableBody className="tableBody">
         {cities.map((cityInd, i) => {
           curCity = cityResults[cityInd]
           if (curCity) {
@@ -159,11 +167,8 @@ const GameView = props => {
       </TableBody>
       </Table>
       </section>
-      <div className="replay">
-        {won ? <button onClick={() => reset()}>Play Again</button> : null}
-      </div>
     </div>
-    </>
+    </Paper>
   )
 }
 
