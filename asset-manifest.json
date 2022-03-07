@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/citadle/static/css/main.fa0b448a.css",
+    "main.css": "/citadle/static/css/main.610463e6.css",
     "main.js": "/citadle/static/js/main.fd90299f.js",
     "static/js/787.197f1451.chunk.js": "/citadle/static/js/787.197f1451.chunk.js",
     "static/media/world.png": "/citadle/static/media/world.52773d7ee1cffb04ae63.png",
     "index.html": "/citadle/index.html",
-    "main.fa0b448a.css.map": "/citadle/static/css/main.fa0b448a.css.map",
+    "main.610463e6.css.map": "/citadle/static/css/main.610463e6.css.map",
     "main.fd90299f.js.map": "/citadle/static/js/main.fd90299f.js.map",
     "787.197f1451.chunk.js.map": "/citadle/static/js/787.197f1451.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa0b448a.css",
+    "static/css/main.610463e6.css",
     "static/js/main.fd90299f.js"
   ]
 }
