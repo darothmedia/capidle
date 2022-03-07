@@ -18,7 +18,7 @@ const Splash = props => {
   return(
     <Paper>
       <div className="splashwrap">
-        <h1>CITADLE</h1>
+        <h1>CAPIDLE</h1>
         <h3>The 🌎 🏙️ Guessing Game</h3>
         <p className="gameinfo">
           Test your geography skills! Enter a city

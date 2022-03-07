@@ -89,7 +89,7 @@ const GameView = props => {
   if (errors[429]) {
     return (
       <div>
-        <h1>Citadle</h1>
+        <h1>CAPIDLE</h1>
         <p className="error">Error: Daily API Limit reached!</p>
       </div>
     )
@@ -103,7 +103,7 @@ const GameView = props => {
         </IconButton>
       </div>
     <div className='inputwrap'>
-      <h1>CITADLE</h1>
+      <h1>CAPIDLE</h1>
       <div className="worldDiv">
           <img src={World} className="worldMap" alt="world-map" />
           <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
