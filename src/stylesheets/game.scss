@@ -1,7 +1,7 @@
 .cities {
   margin-top: 20px;
   width: 80vw;
-  height: calc(100vh - 370px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: darkgray;
@@ -36,21 +36,18 @@
   font-size: 20px;
 }
 
-#cityInfo {
-}
-
 .cityName {
   display: flex;
   flex-direction: row;
   padding-left: 10px;
-  margin: 5px 0px 5px 0px;
+  margin: 5px 0px 5px 5px;
   max-width: calc(80vw - 190px);
   overflow: scroll;
   height: 30px;
 }
 
 #distanceHead {
-  width: 180px;
+  width: 120px;
 }
 
 // .cityHead {

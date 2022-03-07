@@ -76,7 +76,6 @@ const GameView = props => {
       // setGameState({ ...gameState, won: true, winPin: [pinLoc(target.latitude, target.longitude)] })
     } 
     // setGameState({ ...gameState, cities: [...cities, city]})
-    // console.log(gameState)
     
     setCities([city, ...cities])
     // setGameState({...gameState, guess: ""})
