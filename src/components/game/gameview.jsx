@@ -7,7 +7,7 @@ import cityDisplay from "../../util/city_display";
 import World from "../../img/world.png"
 import Map from "./map";
 import { ArrowBack, ArrowCircleRight } from "@mui/icons-material";
-import { InputAdornment, IconButton, InputLabel, FormControl, FilledInput, Table, TableBody, TableHead, TableCell, TableRow, Paper, Button } from "@mui/material";
+import { InputAdornment, IconButton, InputLabel, FormControl, FilledInput, Table, TableBody, TableHead, TableCell, TableRow, Paper, Button, Input } from "@mui/material";
 import { Link } from "react-router-dom";
 
 
@@ -27,9 +27,19 @@ const GameView = props => {
   const [won, setWon] = useState(false)
   const [winPin, setWinPin] = useState([])
   const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
+
+  const [gameState, setGameState] = useState({
+    cities: [],
+    mapPins: [],
+    winPin: [],
+    guess: "",
+    won: false,
+    targetCity: Targets[Math.floor(Math.random() * Targets.length)]
+  })
+
+
   const {searchCity, cityResults, errors} = props
   const cityArray = Object.keys(cityResults)
-  const searchBar = useRef()
   const target = cityResults[targetCity]
 
   useEffect(() => {
@@ -39,6 +49,7 @@ const GameView = props => {
   }, [targetCity, won])
 
   const handleChange = e => {
+    // setGameState({...gameState, guess: e.target.value})
     setCity(e.target.value)
   }
 
@@ -49,9 +60,11 @@ const GameView = props => {
         .then(res => {
           if (!res.city){}
           else if (res.city.id === target.id) {
+            // setGameState({...gameState, won: true, winPin: [pinLoc(target.latitude, target.longitude)]})
             setWon(true)
-            setWinPin([pinLoc(target.latitude, target.longitude)])
+            setWinPin()
           } else {
+            // setGameState({...gameState, mapPins: [...mapPins, pinLoc(res.city.latitude, res.city.longitude)]})
             setMapPins([...mapPins, pinLoc(res.city.latitude, res.city.longitude)])
           }
         }
@@ -60,12 +73,19 @@ const GameView = props => {
     else if (cityResults[city].id === target.id) {
       setWon(true)
       setWinPin([pinLoc(target.latitude, target.longitude)])
+      // setGameState({ ...gameState, won: true, winPin: [pinLoc(target.latitude, target.longitude)] })
     } 
+    // setGameState({ ...gameState, cities: [...cities, city]})
+    // console.log(gameState)
+    
     setCities([city, ...cities])
+    // setGameState({...gameState, guess: ""})
     setCity("")
+
   }
 
   function reset() {
+    // setGameState({ ...gameState, cities: [], mapPins: [], winPin: [], won: false, targetCity: Targets[Math.floor(Math.random() * Targets.length)]})
     setCities([])
     setMapPins([])
     setWinPin([])
@@ -74,6 +94,7 @@ const GameView = props => {
   }
 
   let curCity = {}
+  let dist = {}
 
   if (errors[429]) {
     return (
@@ -94,9 +115,9 @@ const GameView = props => {
     <div className='inputwrap'>
       <h1>Citadle</h1>
       {won === false ? <form onSubmit={submitCity}>
-      <FormControl sx={{ m: 1, width: '30ch' }} variant="filled">
+      <FormControl sx={{ m: 1, width: '28ch', margin: '0px' }} variant="standard">
         <InputLabel htmlFor="guess">Guess a City</InputLabel>
-        <FilledInput 
+        <Input 
           id='guess' 
           autoComplete="off"
           onChange={handleChange} 
@@ -126,28 +147,33 @@ const GameView = props => {
       <section className="cities">
         <Table className="cityTable">
           <TableHead>
-            <TableRow className="headerRow">
+            <TableRow id="headerRow">
               <TableCell id="distanceHead">Target Distance 📍</TableCell>
               <TableCell id="cityHead">Guessed City 🏙️</TableCell>
             </TableRow>
           </TableHead>
-        <TableBody className="tableBody">
+        <TableBody id="tableBody">
         {cities.map((cityInd, i) => {
           curCity = cityResults[cityInd]
           if (curCity) {
+            dist = getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude)
             return(
-              <TableRow key={i} className="cityRow">
-                  <TableCell className="cityInfo">{ 
-                    getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude)
-                  }
+              <TableRow key={i} id="cityRow">
+                  {dist.message ? 
+                  <TableCell id="cityInfo">
+                    {dist.message}
                   </TableCell>
+                  : <TableCell id="cityInfo">
+                    {dist.mi} {dist.card}
+                  </TableCell>
+                  }
                 {cityDisplay(curCity.city)}
               </TableRow>
             )
           } else if (cityArray.includes(cityInd)) {
             return(
-              <TableRow key={i} className="cityRow">
-                <TableCell className="cityInfo">
+              <TableRow key={i} id="cityRow">
+                <TableCell id="cityInfo">
                   City not found
                 </TableCell>
                 {cityDisplay(cityInd)}
@@ -155,8 +181,8 @@ const GameView = props => {
             )
           } else {
             return (
-              <TableRow key={i} className="cityRow">
-                <TableCell className="cityInfo">
+              <TableRow key={i} id="cityRow">
+                <TableCell id="cityInfo">
                   Searching
                 </TableCell>
                 {cityDisplay(cityInd)}

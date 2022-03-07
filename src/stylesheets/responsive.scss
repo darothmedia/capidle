@@ -1,19 +1,23 @@
 @media only screen and (max-width: 600px) {
   #distanceHead {
-    font-size: 12px;
-    width: 120px;
+    font-size: 11px;
+    width: 130px;
   }
 
   #cityHead {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   #cityInfo {
-    width: 70px;
+    width: 90px;
     font-size: 8px;
   }
 
-  .cityName {
+  .spacer, .nav {
+    height: 10px;
+  }
+
+  #cityName {
     max-width: calc(90vw - 120px);
   }
 

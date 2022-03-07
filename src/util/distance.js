@@ -30,8 +30,8 @@ export const getDistance = (lat1, lon1, lat2, lon2) => {
     if ((long < 0) && card === "N") { card = "↗️" }
   // }
   
-  if (mi == 0) {return "YOU WIN"}
-  else { return mi + " mi / " + km + " km " + card;}
+  if (mi == 0) {return {message: "YOU WIN"}}
+  else { return {mi: mi + " mi", km: km + " km", card: card};}
 }
 
 function deg2rad(deg) {
