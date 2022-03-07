@@ -1,17 +1,17 @@
 @media only screen and (max-width: 600px) {
   #distanceHead {
-    font-size: 11px;
-    width: 100px;
+    font-size: 10px;
+    width: 150px;
   }
 
   #cityHead {
-    font-size: 11px;
+    font-size: 10px;
     text-align: left;
   }
 
   #cityInfo {
-    width: 90px;
-    font-size: 12px;
+    width: 140px;
+    font-size: 11px;
   }
 
   .spacer, .nav {
@@ -19,7 +19,7 @@
   }
 
   #cityName {
-    max-width: calc(90vw - 120px);
+    max-width: calc(90vw - 140px);
   }
 
   .char, .blank {
@@ -27,7 +27,6 @@
     min-width: 15px;
     height: 15px;
     margin: 1px;
-    text-align: center;
     padding: 3px 3px 2px 1px;
     font-size: 10px;
   }

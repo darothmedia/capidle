@@ -103,7 +103,7 @@ const GameView = props => {
         </IconButton>
       </div>
     <div className='inputwrap'>
-      <h1>Citadle</h1>
+      <h1>CITADLE</h1>
       <div className="worldDiv">
           <img src={World} className="worldMap" alt="world-map" />
           <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
