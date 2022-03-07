@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/citadle/static/css/main.b7f9962f.css",
-    "main.js": "/citadle/static/js/main.2fb32736.js",
-    "static/js/787.197f1451.chunk.js": "/citadle/static/js/787.197f1451.chunk.js",
-    "static/media/world.png": "/citadle/static/media/world.52773d7ee1cffb04ae63.png",
-    "index.html": "/citadle/index.html",
-    "main.b7f9962f.css.map": "/citadle/static/css/main.b7f9962f.css.map",
-    "main.2fb32736.js.map": "/citadle/static/js/main.2fb32736.js.map",
-    "787.197f1451.chunk.js.map": "/citadle/static/js/787.197f1451.chunk.js.map"
+    "main.css": "/capidle/static/css/main.b7f9962f.css",
+    "main.js": "/capidle/static/js/main.5c9ea938.js",
+    "static/js/787.dc96dfd6.chunk.js": "/capidle/static/js/787.dc96dfd6.chunk.js",
+    "static/media/world.png": "/capidle/static/media/world.52773d7ee1cffb04ae63.png",
+    "index.html": "/capidle/index.html",
+    "main.b7f9962f.css.map": "/capidle/static/css/main.b7f9962f.css.map",
+    "main.5c9ea938.js.map": "/capidle/static/js/main.5c9ea938.js.map",
+    "787.dc96dfd6.chunk.js.map": "/capidle/static/js/787.dc96dfd6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b7f9962f.css",
-    "static/js/main.2fb32736.js"
+    "static/js/main.5c9ea938.js"
   ]
 }
