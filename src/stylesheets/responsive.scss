@@ -18,27 +18,26 @@
     height: 10px;
   }
 
-  .cityName {
+  #cityName {
     max-width: calc(90vw - 120px);
-    margin-left: 5px;
   }
 
-  // .char, .blank {
-  //   width: 10px;
-  //   min-width: 10px;
-  //   height: 10px;
-  //   margin: 1px;
-  //   text-align: center;
-  //   padding: 2px 2px 3px 2px;
-  //   font-size: 10px;
-  // }
+  .char, .blank {
+    width: 15px;
+    min-width: 15px;
+    height: 15px;
+    margin: 1px;
+    text-align: center;
+    padding: 3px 3px 2px 1px;
+    font-size: 10px;
+  }
 
   .cities, .splashwrap {
     width: 90vw;
   }
 
   .worldMap, .worldCanvas, .worldDiv {
-    width: 70vw;
-    height: 35vw;
+    width: 60vw;
+    height: 30vw;
   }
 }

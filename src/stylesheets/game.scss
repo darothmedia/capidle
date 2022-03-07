@@ -36,14 +36,11 @@
   font-size: 20px;
 }
 
-.cityName {
+#cityName {
   display: flex;
   flex-direction: row;
-  padding-left: 10px;
-  margin: 5px 0px 5px 5px;
   max-width: calc(80vw - 190px);
   overflow: scroll;
-  height: 30px;
 }
 
 #distanceHead {

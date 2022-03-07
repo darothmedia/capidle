@@ -8,14 +8,13 @@ export const getDistance = (lat1, lon1, lat2, lon2) => {
     Math.sin(dLon / 2) * Math.sin(dLon / 2)
     ;
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  var km = (R * c).toFixed(0); // Distance in km
-  var mi = (0.621371 * km).toFixed(0)
+  var km = Math.floor(R * c); // Distance in km
+  var mi = Math.floor(0.621371 * km)
   let card = ""
   let lat = lat1 - lat2
   let long = lon1 - lon2
 
   lat > 0 ? card = "S" : card = "N"
-  // -5 < lat < 5 ? card = "WE" : null
 
   // if (card = "WE") {
   //   if ((long > 0) && card === "WE") { card = "⬅" }
@@ -30,7 +29,7 @@ export const getDistance = (lat1, lon1, lat2, lon2) => {
     if ((long < 0) && card === "N") { card = "↗️" }
   // }
   
-  if (mi == 0) {return {message: "YOU WIN"}}
+  if (mi === 0) {return {message: "YOU WIN"}}
   else { return {mi: mi + " mi", km: km + " km", card: card};}
 }
 

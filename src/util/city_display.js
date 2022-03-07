@@ -1,5 +1,7 @@
+import { TableCell } from "@mui/material"
+
 const cityDisplay = city => (
-  <td className='cityName'>
+  <TableCell id='cityName'>
     {city.toUpperCase().split('').map(
       (char, i) => {
         if (char === " ") {
@@ -12,7 +14,7 @@ const cityDisplay = city => (
         )
       }
     )}
-  </td>
+  </TableCell>
 )
 
 export default cityDisplay

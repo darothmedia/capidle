@@ -35,9 +35,9 @@ const Map = props => {
     const context = canvas.getContext('2d')
 
     if (mapPins.length > 0){
-      mapPins.map((pin) => {
+      mapPins.map((pin) => (
         drawPin(context, pin)
-      })
+      ))
     }
     if (winPin.length > 0) {
       drawStar(context, winPin[0])
@@ -45,7 +45,7 @@ const Map = props => {
     if (cities.length < 1){
       clearMap(context)
     }
-  }, [mapPins, drawPin, winPin, cities])
+  }, [mapPins, winPin, cities])
 
   return(
       <canvas className="worldCanvas" ref={mapRef} />
