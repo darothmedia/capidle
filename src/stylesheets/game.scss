@@ -94,6 +94,8 @@
 .paperElement {
   background-color: gray;
   position: relative;
+  min-height: calc(100vh - 100px);
+  margin-bottom: 50px;
 }
 
 .arrowCont {

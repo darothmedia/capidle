@@ -132,7 +132,7 @@ const GameView = props => {
           {won ? <Button variant="contained" onClick={() => reset()}>Play Again</Button> : null}
         </div>
       <section className="cities">
-        <Table className="cityTable">
+        <Table id="cityTable">
           <TableHead>
             <TableRow id="headerRow">
               <TableCell id="distanceHead">Target Distance</TableCell>
