@@ -94,7 +94,7 @@ const GameView = props => {
     <div className='inputwrap'>
       <h1>Citadle</h1>
       {won === false ? <form onSubmit={submitCity}>
-      <FormControl sx={{ m: 1, width: '40ch' }} variant="filled">
+      <FormControl sx={{ m: 1, width: '30ch' }} variant="filled">
         <InputLabel htmlFor="guess">Guess a City</InputLabel>
         <FilledInput 
           id='guess' 
