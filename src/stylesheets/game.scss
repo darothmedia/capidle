@@ -89,10 +89,12 @@
 
 .inputwrap {
   justify-content: center;
+  background-color: white;
+  border-radius: 2px;
 }
 
-.paperElement {
-  background-color: gray;
+#paperElement {
+  background-color: rgb(233, 232, 232);
   position: relative;
   min-height: calc(100vh - 100px);
   margin-bottom: 50px;

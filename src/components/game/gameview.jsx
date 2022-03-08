@@ -96,7 +96,7 @@ const GameView = props => {
   }
 
   return (
-    <Paper className="paperElement" elevation={3}>
+    <Paper id="paperElement" elevation={3} >
       <div className="arrowCont">
         <IconButton className="backArrow" >
           <Link to='/'><ArrowBack /></Link>
