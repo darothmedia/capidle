@@ -90,7 +90,7 @@ const GameView = props => {
     return (
       <div>
         <h1>CAPIDLE</h1>
-        <p className="error">Error: Daily API Limit reached!</p>
+        <p className="error">Error: API Limit reached!</p>
       </div>
     )
   }
