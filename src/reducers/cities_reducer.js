@@ -4,7 +4,7 @@ const CitiesReducer = (state = {}, action) => {
   Object.freeze(state)
   switch(action.type) {
     case RECEIVE_CITY:
-      return Object.assign({}, state, {[action.searchTerm]: action.city} )
+      return Object.assign({}, state, {[action.searchTerm.toLowerCase()]: action.city} )
     default:
       return state
   }

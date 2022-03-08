@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { searchCity } from "../../actions/geo_actions";
 import {getDistance, pinLoc} from "../../util/distance";
-import Targets from "../../util/target_cities";
+import {Capitals} from "../../util/target_cities";
 import cityDisplay from "../../util/city_display";
 import World from "../../img/world.png"
 import Map from "./map";
@@ -25,8 +25,9 @@ const GameView = props => {
   const [mapPins, setMapPins] = useState([])
   const [city, setCity] = useState("")
   const [won, setWon] = useState(false)
+  const [gaveUp, setGaveUp] = useState(false)
   const [winPin, setWinPin] = useState([])
-  const [targetCity, setTargetCity] = useState(Targets[Math.floor(Math.random() * Targets.length)])
+  const [targetCity, setTargetCity] = useState(Capitals[Math.floor(Math.random() * Capitals.length)])
 
   // const [gameState, setGameState] = useState({
   //   cities: [],
@@ -38,7 +39,7 @@ const GameView = props => {
 
   const {searchCity, cityResults, errors} = props
   const cityArray = Object.keys(cityResults)
-  const target = cityResults[targetCity]
+  const target = cityResults[targetCity.toLowerCase()]
 
   useEffect(() => {
     if (!target){
@@ -58,7 +59,7 @@ const GameView = props => {
           if (!res.city){}
           else if (res.city.id === target.id) {
             setWon(true)
-            setWinPin([])
+            setWinPin([pinLoc(target.latitude, target.longitude)])
           } else {
             setMapPins([...mapPins, pinLoc(res.city.latitude, res.city.longitude)])
           }
@@ -80,7 +81,13 @@ const GameView = props => {
     setMapPins([])
     setWinPin([])
     setWon(false)
-    setTargetCity(Targets[Math.floor(Math.random() * Targets.length)])
+    setGaveUp(false)
+    setTargetCity(Capitals[Math.floor(Math.random() * Capitals.length)])
+  }
+
+  function giveup() {
+    setGaveUp(true)
+    setWinPin([pinLoc(target.latitude, target.longitude)])
   }
 
   let curCity = {}
@@ -108,7 +115,7 @@ const GameView = props => {
           <img src={World} className="worldMap" alt="world-map" />
           <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
       </div>
-        {won === false ? <form onSubmit={submitCity}>
+        {won === false && gaveUp === false ? <form onSubmit={submitCity}>
           <FormControl sx={{ m: 1, width: '28ch', margin: '0px' }} variant="standard">
             <InputLabel htmlFor="guess">Guess a City</InputLabel>
             <Input
@@ -126,10 +133,14 @@ const GameView = props => {
                 </InputAdornment>
               }
             />
+            <Button onClick={() => giveup()}>Give Up?</Button>
+
           </FormControl>
-        </form> : <div>{`Winner with ${cities.length} guesses!`}</div>}
+        </form> : null}
+        {won ? <div>{`Winner with ${cities.length} guesses!`}</div> : null}
+        {gaveUp ? <div>{`Target City: ${targetCity}`}</div> : null}
         <div className="replay">
-          {won ? <Button variant="contained" onClick={() => reset()}>Play Again</Button> : null}
+          {won || gaveUp ? <Button variant="contained" onClick={() => reset()}>Play Again</Button> : null}
         </div>
       <section className="cities">
         <Table id="cityTable">

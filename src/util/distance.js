@@ -40,11 +40,19 @@ function deg2rad(deg) {
 export const pinLoc = (lat, long) => {
   let pin = []
   lat > 0 ? 
-    pin.push(88 - (lat / 90 * 88)) :
-    pin.push(88 + ((lat * -1) / 90 * 88))
-  long < 0 ?
-    pin.push(125 - ((long * -1) / 180 * 150)) :
+    pin.push(86 - (lat / 90 * 86)) :
+    pin.push(86 + ((lat * -1) / 90 * 86))
+  if (long > 0) {
     pin.push(125 + ((long / 180) * 150))
+  } else if (long < 0 && (lat > 30 && lat < 40)) {
+    pin.push(125 - ((long * -1) / 180 * 148))
+  } else if (long < 0 && lat < 30) {
+    pin.push(125 - ((long * -1) / 180 * 160))
+  }
+  else {
+    pin.push(125 - ((long * -1) / 180 * 140))
+  }
+  
   if (pin[1] < 0) {pin[1] = pin[1] * -1}
   return pin
 }
