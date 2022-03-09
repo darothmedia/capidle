@@ -177,7 +177,15 @@ const GameView = props => {
         <TableBody id="tableBody">
         {cities.map((cityInd, i) => {
           curCity = cityResults[cityInd]
-          if (curCity) {
+          if (curCity === target && gaveUp === true){
+            return (
+              <TableRow key={i} id="cityRow">
+                <TableCell id="cityInfo">
+                  GAVE UP
+                </TableCell>
+                {cityDisplay(cityInd)}
+              </TableRow>)
+          } else if (curCity) {
             dist = getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude)
             return(
               <TableRow key={i} id="cityRow">
@@ -202,14 +210,6 @@ const GameView = props => {
                 {cityDisplay(cityInd)}
               </TableRow>
             )
-          } else if (!cityArray.includes(cityInd) && gaveUp === true) {
-            return (
-            <TableRow key={i} id="cityRow">
-              <TableCell id="cityInfo">
-                GAVE UP
-              </TableCell>
-              {cityDisplay(cityInd)}
-            </TableRow>)
           } else {
             return (
               <TableRow key={i} id="cityRow">
