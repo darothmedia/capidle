@@ -8,6 +8,7 @@ import World from "../../img/world.png"
 import Map from "./map";
 import { ArrowBack, ArrowCircleRight } from "@mui/icons-material";
 import { InputAdornment, IconButton, InputLabel, FormControl, Table, TableBody, TableHead, TableCell, TableRow, Paper, Button, Input } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { Link } from "react-router-dom";
 
 
@@ -27,6 +28,7 @@ const GameView = props => {
   const [won, setWon] = useState(false)
   const [gaveUp, setGaveUp] = useState(false)
   const [winPin, setWinPin] = useState([])
+  const [metric, setMetric] = useState(false)
   const [targetCity, setTargetCity] = useState(Capitals[Math.floor(Math.random() * Capitals.length)])
 
   // const [gameState, setGameState] = useState({
@@ -76,7 +78,17 @@ const GameView = props => {
     setCity("")
   }
 
+  const metricToggle = [
+    <ToggleButton value={false} key="false">
+      MI
+    </ToggleButton>,
+    <ToggleButton value={true} key="true">
+      KM
+    </ToggleButton>
+  ]
+
   function reset() {
+    setCity("")
     setCities([])
     setMapPins([])
     setWinPin([])
@@ -85,20 +97,25 @@ const GameView = props => {
     setTargetCity(Capitals[Math.floor(Math.random() * Capitals.length)])
   }
 
-  function giveup() {
-    setGaveUp(true)
-    setWinPin([pinLoc(target.latitude, target.longitude)])
+  const giveup = e => {
+      setGaveUp(true)
+      setCities([targetCity, ...cities])
+      setWinPin([pinLoc(target.latitude, target.longitude)])
   }
 
   let curCity = {}
   let dist = {}
 
+  const toggleChange = (e, value) => {
+    setMetric(value)
+  }
+
   if (errors[429]) {
     return (
-      <div>
+      <Paper id='errorPaper'>
         <h1>CAPIDLE</h1>
         <p className="error">Error: API Limit reached!</p>
-      </div>
+      </Paper>
     )
   }
 
@@ -111,6 +128,11 @@ const GameView = props => {
       </div>
     <div className='inputwrap'>
       <h1>CAPIDLE</h1>
+      <div id="toggleCont">
+          <ToggleButtonGroup id="toggle" value={metric} onChange={toggleChange} exclusive={true}>
+            {metricToggle}
+          </ToggleButtonGroup>
+      </div>
       <div className="worldDiv">
           <img src={World} className="worldMap" alt="world-map" />
           <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
@@ -133,7 +155,7 @@ const GameView = props => {
                 </InputAdornment>
               }
             />
-            <Button onClick={() => giveup()}>Give Up?</Button>
+            <Button onClick={giveup}>Give Up?</Button>
 
           </FormControl>
         </form> : null}
@@ -147,7 +169,7 @@ const GameView = props => {
           <TableHead>
             <TableRow id="headerRow">
               <TableCell id="distanceHead">Target Distance</TableCell>
-              <TableCell id="cityHead">Guessed City</TableCell>
+                <TableCell id="cityHead">Guessed City 📍</TableCell>
             </TableRow>
           </TableHead>
         <TableBody id="tableBody">
@@ -162,7 +184,8 @@ const GameView = props => {
                     {dist.message}
                   </TableCell>
                   : <TableCell id="cityInfo">
-                    {dist.mi} {dist.card}
+                    {metric ? dist.km : dist.mi}
+                    {" " + dist.card}
                   </TableCell>
                   }
                 {cityDisplay(curCity.city)}
@@ -177,6 +200,14 @@ const GameView = props => {
                 {cityDisplay(cityInd)}
               </TableRow>
             )
+          } else if (!cityArray.includes(cityInd) && gaveUp === true) {
+            return (
+            <TableRow key={i} id="cityRow">
+              <TableCell id="cityInfo">
+                GAVE UP
+              </TableCell>
+              {cityDisplay(cityInd)}
+            </TableRow>)
           } else {
             return (
               <TableRow key={i} id="cityRow">

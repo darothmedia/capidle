@@ -15,7 +15,6 @@ const Map = props => {
     ctx.moveTo(arr[1], (arr[0] - 8))
     ctx.arc(arr[1], (arr[0] - 8), 2.5, 0, 2 * Math.PI)
     ctx.fill()
-    console.log("pin drawn")
   }
 
   const drawStar = (ctx, arr) => {
