@@ -8,7 +8,7 @@ import World from "../../img/world.png"
 import Map from "./map";
 import { ArrowBack, ArrowCircleRight } from "@mui/icons-material";
 import { InputAdornment, IconButton, InputLabel, FormControl, Table, TableBody, TableHead, TableCell, TableRow, Paper, Button, Input } from "@mui/material";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 
 
@@ -129,7 +129,7 @@ const GameView = props => {
     <div className='inputwrap'>
       <h1>CAPIDLE</h1>
       <div id="toggleCont">
-          <ToggleButtonGroup id="toggle" value={metric} onChange={toggleChange} exclusive={true}>
+          <ToggleButtonGroup size="small" id="toggle" value={metric} onChange={toggleChange} exclusive={true}>
             {metricToggle}
           </ToggleButtonGroup>
       </div>
@@ -155,7 +155,9 @@ const GameView = props => {
                 </InputAdornment>
               }
             />
-            <Button onClick={giveup}>Give Up?</Button>
+            <Tooltip title="Hint: the target is always a capital!">
+              <Button onClick={giveup}>Give Up?</Button>
+            </Tooltip>
 
           </FormControl>
         </form> : null}
