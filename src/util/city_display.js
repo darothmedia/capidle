@@ -1,8 +1,7 @@
 import { TableCell } from "@mui/material"
 
-const cityDisplay = city => (
-  <TableCell id='cityName'>
-    {city.toUpperCase().split('').map(
+export const charLineup = word => (
+    word.toUpperCase().split('').map(
       (char, i) => {
         if (char === " ") {
           return (
@@ -13,8 +12,11 @@ const cityDisplay = city => (
           <p key={`c${i}`} className="char">{char}</p>
         )
       }
-    )}
-  </TableCell>
+    )
 )
 
-export default cityDisplay
+export const cityDisplay = city => (
+  <TableCell id='cityName'>
+    {charLineup(city)}
+  </TableCell>
+)

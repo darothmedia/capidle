@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { searchCity } from "../../actions/geo_actions";
 import {getDistance, pinLoc} from "../../util/distance";
 import {Capitals} from "../../util/target_cities";
-import cityDisplay from "../../util/city_display";
+import {cityDisplay, charLineup} from "../../util/city_display";
 import World from "../../img/world.png"
 import Map from "./map";
 import { ArrowBack, ArrowCircleRight } from "@mui/icons-material";
@@ -79,16 +79,15 @@ const GameView = props => {
   }
 
   const metricToggle = [
-    <ToggleButton value={false} key="false">
+    <ToggleButton value={false} key="false" id="toggleButton">
       MI
     </ToggleButton>,
-    <ToggleButton value={true} key="true">
+    <ToggleButton value={true} key="true" id="toggleButton">
       KM
     </ToggleButton>
   ]
 
   function reset() {
-    setCity("")
     setCities([])
     setMapPins([])
     setWinPin([])
@@ -112,8 +111,10 @@ const GameView = props => {
 
   if (errors[429]) {
     return (
-      <Paper id='errorPaper'>
-        <h1>CAPIDLE</h1>
+      <Paper id='paperElement'>
+        <div className="titleChars">
+          {charLineup("capidle")}
+        </div>
         <p className="error">Error: API Limit reached!</p>
       </Paper>
     )
@@ -127,18 +128,16 @@ const GameView = props => {
         </IconButton>
       </div>
     <div className='inputwrap'>
-      <h1>CAPIDLE</h1>
-      <div id="toggleCont">
-          <ToggleButtonGroup size="small" id="toggle" value={metric} onChange={toggleChange} exclusive={true}>
-            {metricToggle}
-          </ToggleButtonGroup>
-      </div>
+        <div className='titleChars'>
+          {charLineup("capidle")}
+        </div>
+      
       <div className="worldDiv">
           <img src={World} className="worldMap" alt="world-map" />
           <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
       </div>
-        {won === false && gaveUp === false ? <form onSubmit={submitCity}>
-          <FormControl sx={{ m: 1, width: '28ch', margin: '0px' }} variant="standard">
+        {(won === false && gaveUp === false) ? <form onSubmit={submitCity}>
+          <FormControl sx={{ m: 1, width: '28ch', margin: '0px' }} id="formControl" variant="standard">
             <InputLabel htmlFor="guess">Guess a City</InputLabel>
             <Input
               id='guess'
@@ -164,20 +163,27 @@ const GameView = props => {
         {won ? <div>{`Winner with ${cities.length} guesses!`}</div> : null}
         {gaveUp ? <div>{`Target City: ${targetCity}`}</div> : null}
         <div className="replay">
-          {won || gaveUp ? <Button variant="contained" onClick={() => reset()}>Play Again</Button> : null}
+          {won || gaveUp ? <Button id='muiButton' variant="contained" onClick={() => reset()}>Play Again</Button> : null}
         </div>
       <section className="cities">
         <Table id="cityTable">
           <TableHead>
             <TableRow id="headerRow">
               <TableCell id="distanceHead">Target Distance</TableCell>
-                <TableCell id="cityHead">Guessed City 📍</TableCell>
+                <TableCell id="cityHead">
+                  Guessed City 📍
+                  <div id="toggleCont">
+                    <ToggleButtonGroup size="small" id="toggle" value={metric} onChange={toggleChange} exclusive={true}>
+                      {metricToggle}
+                    </ToggleButtonGroup>
+                  </div>
+                  </TableCell>
             </TableRow>
           </TableHead>
         <TableBody id="tableBody">
         {cities.map((cityInd, i) => {
-          curCity = cityResults[cityInd]
-          if (curCity === target && gaveUp === true){
+          curCity = cityResults[cityInd.toLowerCase()]
+          if (cityInd === targetCity && gaveUp === true){
             return (
               <TableRow key={i} id="cityRow">
                 <TableCell id="cityInfo">
@@ -185,7 +191,8 @@ const GameView = props => {
                 </TableCell>
                 {cityDisplay(cityInd)}
               </TableRow>)
-          } else if (curCity) {
+          } else 
+          if (curCity) {
             dist = getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude)
             return(
               <TableRow key={i} id="cityRow">
@@ -193,7 +200,8 @@ const GameView = props => {
                   <TableCell id="cityInfo">
                     {dist.message}
                   </TableCell>
-                  : <TableCell id="cityInfo">
+                  : 
+                  <TableCell id="cityInfo">
                     {metric ? dist.km : dist.mi}
                     {" " + dist.card}
                   </TableCell>
@@ -201,7 +209,7 @@ const GameView = props => {
                 {cityDisplay(curCity.city)}
               </TableRow>
             )
-          } else if (cityArray.includes(cityInd)) {
+          } else if (cityArray.includes(cityInd.toLowerCase())) {
             return(
               <TableRow key={i} id="cityRow">
                 <TableCell id="cityInfo">

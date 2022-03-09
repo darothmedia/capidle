@@ -1,3 +1,5 @@
+$backgroundColor: rgb(53, 53, 53);
+
 .bodywrap {
   display: flex;
   justify-content: center;
@@ -37,7 +39,8 @@ button {
 body {
   margin: 0;
   font-family: "Roboto";
-  background-color: rgb(49, 49, 49);
+  color: $backgroundColor;
+  background-color: $backgroundColor;
 }
 
 a {
@@ -51,7 +54,34 @@ h1 {
 }
 
 #errorPaper {
-  width: 50vw;
+  width: 80vw;
   height: 100px;
   padding: 10px;
+}
+
+.titleChars {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+}
+
+.titleChars .char {
+  background-color: $backgroundColor;
+  color: white;
+  width: 25px;
+  min-width: 25px;
+  height: 25px;
+  margin: 1px;
+  text-align: center;
+  padding: 12px 10px 8px 10px;
+  font-weight: 800;
+}
+
+.splashwrap {
+  width: 450px;
+}
+
+#muiButton {
+  background-color: $backgroundColor;
 }
