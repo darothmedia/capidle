@@ -1,5 +1,5 @@
 .cities {
-  margin-top: 20px;
+  margin-top: 50px;
   width: 80vw;
   display: flex;
   flex-direction: column;
@@ -61,6 +61,10 @@
   margin-top: 10px;
 }
 
+.replay #muiButton {
+  margin-bottom: -30px;
+}
+
 .gameinfo {
   margin: 0 auto;
   padding: 30px;
@@ -103,5 +107,9 @@
 #toggleButton {
   padding: 0px 10px 0px 10px;
   margin: 0;
+}
+
+#giveUp {
+  margin-bottom: -37px;
 }
 

@@ -137,7 +137,7 @@ const GameView = props => {
           <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
       </div>
         {(won === false && gaveUp === false) ? <form onSubmit={submitCity}>
-          <FormControl sx={{ m: 1, width: '28ch', margin: '0px' }} id="formControl" variant="standard">
+          <FormControl sx={{ m: 1, width: '36ch', margin: '0px' }} id="formControl" variant="standard">
             <InputLabel htmlFor="guess">Guess a City</InputLabel>
             <Input
               id='guess'
@@ -154,12 +154,14 @@ const GameView = props => {
                 </InputAdornment>
               }
             />
-            <Tooltip title="Hint: the target is always a capital!">
-              <Button onClick={giveup}>Give Up?</Button>
-            </Tooltip>
-
+            {cities.length > 1 ?
+              <Tooltip title="Hint: the target is always a capital!">
+                <Button onClick={giveup} id='giveUp'>Give Up?</Button>
+              </Tooltip> : null}
           </FormControl>
         </form> : null}
+        
+        
         {won ? <div>{`Winner with ${cities.length} guesses!`}</div> : null}
         {gaveUp ? <div>{`Target City: ${targetCity}`}</div> : null}
         <div className="replay">

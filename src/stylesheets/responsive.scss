@@ -36,8 +36,8 @@
   }
 
   .worldMap, .worldCanvas, .worldDiv {
-    width: 60vw;
-    height: 30vw;
+    width: 70vw;
+    height: 35vw;
   }
 
   .titleChars .char {
@@ -49,7 +49,7 @@
   }
 
   .titleChars {
-    padding: 15px;
+    padding: 15px 0px 10px 0px;
   }
 
   .splashwrap {
@@ -63,6 +63,14 @@
 
   #formControl {
     width: 28ch;
+  }
+
+  .cities {
+    margin-top: 40px;
+  }
+
+  #giveUp {
+  margin-bottom: -37px;
   }
 }
 
