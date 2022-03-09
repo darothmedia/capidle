@@ -23,11 +23,11 @@
 }
 
 .char {
-  background-color: darkgrey;
+  background-color: rgb(119, 119, 119);
 }
 
 .blank {
-  background-color: rgba(119, 119, 119);
+  background-color: rgb(179, 179, 179);
 }
 
 #directions {
@@ -64,7 +64,6 @@
 .gameinfo {
   margin: 0 auto;
   padding: 30px;
-  margin-bottom: 20px;
 }
 
 .worldMap, .worldCanvas {
