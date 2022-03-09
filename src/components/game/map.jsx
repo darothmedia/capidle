@@ -15,6 +15,7 @@ const Map = props => {
     ctx.moveTo(arr[1], (arr[0] - 8))
     ctx.arc(arr[1], (arr[0] - 8), 2.5, 0, 2 * Math.PI)
     ctx.fill()
+    console.log("pin drawn")
   }
 
   const drawStar = (ctx, arr) => {
@@ -33,13 +34,13 @@ const Map = props => {
   useEffect(() => {
     const canvas = mapRef.current
     const context = canvas.getContext('2d')
+    const latestPin = mapPins[mapPins.length - 1]
 
-    if (mapPins.length > 0){
-      mapPins.map((pin) => (
-        drawPin(context, pin)
-      ))
+    if (latestPin){
+      drawPin(context, latestPin)
     }
-    if (winPin.length > 0) {
+
+    if (winPin[0]) {
       drawStar(context, winPin[0])
     }
     if (cities.length < 1){
