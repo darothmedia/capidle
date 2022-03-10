@@ -1,4 +1,4 @@
-# CAPIDLE
+# [CAPIDLE](https://darothmedia.github.io/capidle/)
 
 ![Capidle Logo](https://live.staticflickr.com/65535/51924752541_d989e5f747_o.png)
 
