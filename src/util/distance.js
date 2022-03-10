@@ -9,26 +9,19 @@ export const getDistance = (lat1, lon1, lat2, lon2) => {
     ;
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var km = Math.floor(R * c); // Distance in km
-  var mi = Math.floor(0.621371 * km)
+  var mi = Math.floor(0.621371 * km) // Distance in mi
+  
   let card = ""
   let lat = lat1 - lat2
   let long = lon1 - lon2
 
   lat > 0 ? card = "S" : card = "N"
 
-  // if (card = "WE") {
-  //   if ((long > 0) && card === "WE") { card = "⬅" }
-  //   if ((long < 0) && card === "WE") { card = "➡️" }
-  // } else if (-50 < long < 50) {
-  //   if ((-50 < long < 50) && card === "S") { card = "⬇" }
-  //   if ((-50 < long < 50) && card === "N") { card = "⬆" }
-  // } else {
-    if ((long > 0) && card === "S") { card = "↙️" }
-    if ((long < 0) && card === "S") { card = "↘️" }
-    if ((long > 0) && card === "N") { card = "↖️" }
-    if ((long < 0) && card === "N") { card = "↗️" }
-  // }
-  
+  if ((long > 0) && card === "S") { card = "↙️" }
+  if ((long < 0) && card === "S") { card = "↘️" }
+  if ((long > 0) && card === "N") { card = "↖️" }
+  if ((long < 0) && card === "N") { card = "↗️" }
+
   if (mi === 0) {return {message: "YOU WIN"}}
   else { return {mi: mi + " mi", km: km + " km", card: card};}
 }
