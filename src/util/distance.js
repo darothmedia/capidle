@@ -15,6 +15,8 @@ export const getDistance = (lat1, lon1, lat2, lon2) => {
   let lat = lat1 - lat2
   let long = lon1 - lon2
 
+  console.log([lat, long])
+
   lat > 0 ? card = "S" : card = "N"
 
   if ((long > 0) && card === "S") { card = "↙️" }
@@ -60,25 +62,6 @@ export const pinLoc = (lat, long) => {
       pin.push(125 - ((long * -1) / 180 * 125))
     }
   }
-  
-  // else if (long < 0 && (lat > 45 && lat < 55)) {
-  //   pin.push(125 - ((long * -1) / 180 * 138))
-  // } else if (long < 0 && (lat > 40 && lat < 45)) {
-  //   pin.push(125 - ((long * -1) / 180 * 142))
-  // } else if (long < 0 && (lat > 30 && lat < 35)) {
-  //   pin.push(125 - ((long * -1) / 180 * 148))
-  // } else if (long < 0 && (lat > 35 && lat < 40)) {
-  //   pin.push(125 - ((long * -1) / 180 * 146)) 
-  // } else if (long < 0 && (lat > 25 && lat < 30)) {
-  //   pin.push(125 - ((long * -1) / 180 * 152))
-  // } else if (long < 0 && (lat > 20 && lat < 25)) {
-  //   pin.push(125 - ((long * -1) / 180 * 156))
-  // } else if (long < 0 && lat < 20) {
-  //   pin.push(125 - ((long * -1) / 180 * 160))
-  // }
-  // else {
-  //   pin.push(125 - ((long * -1) / 180 * 125))
-  // }
   
   if (pin[1] < 0) {pin[1] = pin[1] * -1}
   return pin

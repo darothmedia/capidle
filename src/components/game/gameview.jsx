@@ -31,14 +31,6 @@ const GameView = props => {
   const [metric, setMetric] = useState(false)
   const [targetCity, setTargetCity] = useState(Capitals[Math.floor(Math.random() * Capitals.length)])
 
-  // const [gameState, setGameState] = useState({
-  //   cities: [],
-  //   mapPins: [],
-  //   winPin: [],
-  //   guess: "",
-  //   won: false
-  // })
-
   const {searchCity, cityResults, errors} = props
   const cityArray = Object.keys(cityResults)
   const target = cityResults[targetCity.toLowerCase()]
@@ -46,6 +38,7 @@ const GameView = props => {
   useEffect(() => {
     if (!target){
       searchCity(targetCity)
+        .then(res => console.log([res.city.latitude, res.city.longitude]))
     }
   }, [targetCity, searchCity, target])
 
