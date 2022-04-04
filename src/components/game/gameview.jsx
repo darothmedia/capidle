@@ -22,6 +22,13 @@ const mDTP = dispatch => ({
 })
 
 const GameView = props => {
+  const [gameInfo, setGameInfo] = useState({
+    cities: [],
+    mapPins: [],
+    won: false,
+    gaveUp: false,
+    metric: false
+  })
   const [cities, setCities] = useState([])
   const [mapPins, setMapPins] = useState([])
   const [city, setCity] = useState("")
