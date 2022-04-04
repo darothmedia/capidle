@@ -15,7 +15,7 @@ export const getDistance = (lat1, lon1, lat2, lon2) => {
   let lat = lat1 - lat2
   let long = lon1 - lon2
 
-  console.log([lat, long])
+  // console.log([lat, long])
 
   lat > 0 ? card = "S" : card = "N"
 

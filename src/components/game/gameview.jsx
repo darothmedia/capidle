@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { searchCity } from "../../actions/geo_actions";
-import {getDistance, pinLoc} from "../../util/distance";
+import {pinLoc} from "../../util/distance";
 import {Capitals} from "../../util/target_cities";
-import {cityDisplay, charLineup} from "../../util/city_display";
+import {charLineup} from "../../util/city_display";
 import World from "../../img/world.png"
 import Map from "./map";
 import { ArrowBack, ArrowCircleRight } from "@mui/icons-material";
-import { InputAdornment, IconButton, InputLabel, FormControl, Table, TableBody, TableHead, TableCell, TableRow, Paper, Button, Input } from "@mui/material";
-import { ToggleButton, ToggleButtonGroup, Tooltip } from "@mui/material";
+import { InputAdornment, IconButton, InputLabel, FormControl, Paper, Button, Input, Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
+import Results from "./results";
+// import GuessBar from "./guessbar";
 
 
 const mSTP = state => ({
@@ -22,24 +23,22 @@ const mDTP = dispatch => ({
 })
 
 const GameView = props => {
-  const [gameInfo, setGameInfo] = useState({
-    cities: [],
-    mapPins: [],
-    won: false,
-    gaveUp: false,
-    metric: false
-  })
+  // const [gameInfo, setGameInfo] = useState({
+  //   cities: [],
+  //   mapPins: [],
+  //   won: false,
+  //   gaveUp: false,
+  //   metric: false
+  // })
   const [cities, setCities] = useState([])
   const [mapPins, setMapPins] = useState([])
   const [city, setCity] = useState("")
   const [won, setWon] = useState(false)
   const [gaveUp, setGaveUp] = useState(false)
   const [winPin, setWinPin] = useState([])
-  const [metric, setMetric] = useState(false)
   const [targetCity, setTargetCity] = useState(Capitals[Math.floor(Math.random() * Capitals.length)])
 
   const {searchCity, cityResults, errors} = props
-  const cityArray = Object.keys(cityResults)
   const target = cityResults[targetCity.toLowerCase()]
 
   useEffect(() => {
@@ -78,15 +77,6 @@ const GameView = props => {
     setCity("")
   }
 
-  const metricToggle = [
-    <ToggleButton value={false} key="false" id="toggleButton">
-      MI
-    </ToggleButton>,
-    <ToggleButton value={true} key="true" id="toggleButton">
-      KM
-    </ToggleButton>
-  ]
-
   function reset() {
     setCities([])
     setMapPins([])
@@ -104,10 +94,6 @@ const GameView = props => {
 
   let curCity = {}
   let dist = {}
-
-  const toggleChange = (e, value) => {
-    setMetric(value)
-  }
 
   if (errors[429]) {
     return (
@@ -136,7 +122,8 @@ const GameView = props => {
           <img src={World} className="worldMap" alt="world-map" />
           <Map mapPins={mapPins} winPin={winPin} cities={cities} /> 
       </div>
-        {(won === false && gaveUp === false) ? <form onSubmit={submitCity}>
+        {(won === false && gaveUp === false) ? 
+        <form onSubmit={submitCity}>
           <FormControl sx={{ m: 1, width: '36ch', margin: '0px' }} id="formControl" variant="standard">
             <InputLabel htmlFor="guess">Guess a City</InputLabel>
             <Input
@@ -159,7 +146,8 @@ const GameView = props => {
                 <Button onClick={giveup} id='giveUp'>Give Up?</Button>
               </Tooltip> : null}
           </FormControl>
-        </form> : null}
+        </form> 
+        : null}
         
         
         {won ? <div>{`Winner with ${cities.length} guesses!`}</div> : null}
@@ -168,71 +156,12 @@ const GameView = props => {
           {won || gaveUp ? <Button id='muiButton' variant="contained" onClick={() => reset()}>Play Again</Button> : null}
         </div>
       <section className="cities">
-        <Table id="cityTable">
-          <TableHead>
-            <TableRow id="headerRow">
-              <TableCell id="distanceHead">Target Distance</TableCell>
-                <TableCell id="cityHead">
-                  Guessed City 📍
-                  <div id="toggleCont">
-                    <ToggleButtonGroup size="small" id="toggle" value={metric} onChange={toggleChange} exclusive={true}>
-                      {metricToggle}
-                    </ToggleButtonGroup>
-                  </div>
-                  </TableCell>
-            </TableRow>
-          </TableHead>
-        <TableBody id="tableBody">
-        {cities.map((cityInd, i) => {
-          curCity = cityResults[cityInd.toLowerCase()]
-          if (cityInd === targetCity && gaveUp === true){
-            return (
-              <TableRow key={i} id="cityRow">
-                <TableCell id="cityInfo">
-                  GAVE UP
-                </TableCell>
-                {cityDisplay(cityInd)}
-              </TableRow>)
-          } else 
-          if (curCity) {
-            dist = getDistance(curCity.latitude, curCity.longitude, target.latitude, target.longitude)
-            return(
-              <TableRow key={i} id="cityRow">
-                  {dist.message ? 
-                  <TableCell id="cityInfo">
-                    {dist.message}
-                  </TableCell>
-                  : 
-                  <TableCell id="cityInfo">
-                    {metric ? dist.km : dist.mi}
-                    {" " + dist.card}
-                  </TableCell>
-                  }
-                {cityDisplay(curCity.city)}
-              </TableRow>
-            )
-          } else if (cityArray.includes(cityInd.toLowerCase())) {
-            return(
-              <TableRow key={i} id="cityRow">
-                <TableCell id="cityInfo">
-                  City not found
-                </TableCell>
-                {cityDisplay(cityInd)}
-              </TableRow>
-            )
-          } else {
-            return (
-              <TableRow key={i} id="cityRow">
-                <TableCell id="cityInfo">
-                  Searching
-                </TableCell>
-                {cityDisplay(cityInd)}
-              </TableRow>
-            )
-          }
-        })}
-      </TableBody>
-      </Table>
+        <Results 
+          cities={cities} 
+          curCity={curCity} 
+          target={target} 
+          dist={dist} 
+          gaveUp={gaveUp} />
       </section>
     </div>
     </Paper>
