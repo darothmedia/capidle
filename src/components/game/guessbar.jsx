@@ -13,8 +13,12 @@ const mDTP = dispatch => ({
 })
 
 const GuessBar = props => {
-  const {searchCity, cityResults, setWon, pinLoc, setMapPins, setCities, setWinPin, target, mapPins, cities, giveup} = props
-  const [city, setCity] = useState("")
+  const {searchCity, cityResults, pinLoc, setMapPins, setCities, setWinPin, target, mapPins, cities, giveup} = props
+  const [guessInfo, setGuessInfo] = useState({
+    won: false,
+    city: ""
+  })
+  const {city} = guessInfo
 
   const submitCity = e => {
     e.preventDefault()
@@ -23,7 +27,7 @@ const GuessBar = props => {
         .then(res => {
           if (!res.city) { }
           else if (res.city.id === target.id) {
-            setWon(true)
+            setGuessInfo({...guessInfo, won: true})
             setWinPin([pinLoc(target.latitude, target.longitude)])
           } else {
             setMapPins([...mapPins, pinLoc(res.city.latitude, res.city.longitude)])
@@ -32,17 +36,17 @@ const GuessBar = props => {
         )
     } else if (!cityResults[city].id) { }
     else if (cityResults[city].id === target.id) {
-      setWon(true)
+      setGuessInfo({ ...guessInfo, won: true })
       setWinPin([pinLoc(target.latitude, target.longitude)])
     } else {
       setMapPins([...mapPins, pinLoc(cityResults[city].latitude, cityResults[city].longitude)])
     }
     setCities([city, ...cities])
-    setCity("")
+    setGuessInfo({ ...guessInfo, city: "" })
   }
 
   const handleChange = e => {
-    setCity(e.target.value)
+    setGuessInfo({ ...guessInfo, city: e.target.value })
   }
 
   return (

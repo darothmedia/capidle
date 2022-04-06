@@ -44,7 +44,7 @@ const GameView = props => {
   useEffect(() => {
     if (!target){
       searchCity(targetCity)
-        .then(res => console.log([res.city.latitude, res.city.longitude]))
+        // .then(res => console.log([res.city.latitude, res.city.longitude]))
     }
   }, [targetCity, searchCity, target])
 
