@@ -47,6 +47,7 @@ const GuessBar = props => {
 
   const handleChange = e => {
     setGuessInfo({ ...guessInfo, city: e.target.value })
+    console.log(city)
   }
 
   return (
